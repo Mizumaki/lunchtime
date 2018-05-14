@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import Header from './core/Header'
 import SubHeader from './core/SubHeader';
+import HandlePages from './core/HandlePages';
 
 // あとあと消す
 import './App.css';
@@ -8,9 +10,11 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <div>
+      <BrowserRouter>
+      <div>  
         <Header />
         <SubHeader />
+        <HandlePages />
         <div className='res-container'>
           <div className='res-contents z-depth-3'>
             <div className='res-name'>AFURI 恵比寿</div>
@@ -46,8 +50,9 @@ class App extends Component {
               <div className='res-comment'>予約が最も取れないフレンチ</div>
             </div>
           </div>
-        </div>
-      </div>
+          </div>
+        </div>  
+      </BrowserRouter>
     );
   }
 }
