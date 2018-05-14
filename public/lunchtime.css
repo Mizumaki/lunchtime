@@ -1,0 +1,149 @@
+body {
+  background: url(../src/images/wood-texture.jpg) no-repeat bottom fixed;
+  background-size: cover;
+}
+
+.header {
+  min-height: 6rem;
+  height: 11%;
+  /* vh に直す　*/
+  max-height: 7rem;
+  position: relative;
+  margin-top: .5rem;
+  color: white;
+}
+
+.header .menu-icon {
+  position: absolute;
+  top: 1rem;
+  left: 1.5rem;
+}
+
+.header .header-string {
+  text-align: center;
+  font-size: 2.2rem;
+  height: 100%;
+}
+
+.header-string .site-name {
+  font-size: .9em;
+}
+
+.under-header-menu {
+  min-height: 3.5rem;
+  height: 6.1%;
+  max-height: 4rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+  font-size: 1.8rem;
+}
+
+.under-header-menu>.button.active {
+  color: #FAAF3B;
+  font-weight: bold;
+  border-bottom: 4px solid #FAAF3B;
+  /* TODO: 変化をつけるにあたり、下線を柔らかくする */
+}
+
+.res-container {
+  padding: 1.3rem 2rem;
+  /* .res-contentsのwidthと密接な関わり。気を付ける */
+}
+
+.res-contents {
+  min-height: 11.7rem;
+  height: 37vw;
+  /* 動作未確認　vwでheightを定義*/
+  max-height: 14rem;
+  margin: 0 auto;
+  min-width: 28rem;
+  width: 100%;
+  /* vwに直す */
+  max-width: 34rem;
+  border-radius: 5px;
+  background: #E5E5E5;
+  position: relative;
+}
+
+.card {
+  background: #fff;
+  border-radius: 2px;
+  display: inline-block;
+  height: 300px;
+  margin: 1rem;
+  position: relative;
+  width: 300px;
+}
+
+.z-depth-1 {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+}
+
+.z-depth-1:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.z-depth-2 {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.z-depth-3 {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.z-depth-4 {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.z-depth-5 {
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
+.res-name {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 2.4rem;
+  font-weight: bold;
+  width: 100%;
+  /* %で指定ということは、親がwidth持たなくなったら機能しない？　要確認*/
+  padding: .1em .5em;
+}
+
+.res-info {
+  font-size: 1.6rem;
+  width: 100%;
+  /* %で指定ということは、親がwidth持たなくなったら機能しない？　要確認*/
+  height: 4.2em;
+  /* ここの高さで、.res-distanceと.res-commentの距離を調整*/
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.res-distance {
+  position: absolute;
+  top: 0;
+  right: .8em;
+  background: #60493B;
+  font-size: .9em;
+  color: white;
+  padding: 0 .5rem;
+  vertical-align: middle;
+  border-radius: 20px;
+}
+
+.res-comment {
+  /* 2行にしないように工夫が必要 */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: 1em;
+  /* .res-infoで決定したfont-sizeを引き継いでいるが、念のため */
+  font-weight: bold;
+  padding: .3em .5em;
+  overflow: hidden;
+}
