@@ -10,7 +10,7 @@ const SubHeader = (props) => {
     <div className='under-header-menu'>
       <Link to='/'><div className='button'>近い順</div></Link>
       <Link to='/room'><div className='button active'>人気順</div></Link>
-        <Link to='/friends'><div className='button'>新着順</div></Link>
+      <Link to='/friends'><div className='button'>新着順</div></Link>
     </div>
   );
 }
