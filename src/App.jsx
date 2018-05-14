@@ -1,27 +1,16 @@
 import React, { Component } from 'react';
-import menu from "./images/button_menu.svg";
+import Header from './core/Header'
+import SubHeader from './core/SubHeader';
+
+// あとあと消す
 import './App.css';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <div className="header">
-          <div className='menu-icon'>
-            <img src={menu} alt="menu button" width="40px" />
-          </div>
-          <div className='header-string'>
-            {/* TODO: classNameの名前はもっとましなものにしたい */}
-            <div className='site-name'>LUNCHTIME</div>
-            {/* 疑似要素で検索アイコンsvgを挿入 */}
-            <div className='now-address'>現在地 / ラーメン・つけ麺</div>
-          </div>
-        </div>
-        <div className='under-header-menu'>
-          <div className='button'>近い順</div>
-          <div className='button active'>人気順</div>
-          <div className='button'>新着順</div>
-        </div>
+        <Header />
+        <SubHeader />
         <div className='res-container'>
           <div className='res-contents z-depth-3'>
             <div className='res-name'>AFURI 恵比寿</div>
