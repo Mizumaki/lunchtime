@@ -3,18 +3,36 @@ import { StyleSheet, css } from 'aphrodite';
 import AnytimeMenu from './AnytimeMenu';
 
 const styles = StyleSheet.create({
+  header: {
+    minHeight: '6rem',
+    height: '11%', // vhに直す
+    maxHeight: '7rem',
+    position: 'relative',
+    marginTop: '.5rem',
+    color: 'white',
+  },
+
+  headerString: {
+    textAlign: 'center',
+    fontSize: '2.2rem',
+    height: '100 %',
+  },
+
+  siteName: {
+    fontSize: '.9em',
+  },
 });
 
 
 const Header = () => {
   return (
-    <div className="header">
+    <div className={css(styles.header)}>
       <AnytimeMenu />
-      <div className='header-string'>
+      <div className={css(styles.headerString)}>
         {/* TODO: classNameの名前はもっとましなものにしたい */}
-        <div className='site-name'>LUNCHTIME</div>
+        <div className={css(styles.siteName)}>LUNCHTIME</div>
         {/* TODO: 疑似要素で検索アイコンsvgを挿入 */}
-        <div className='now-address'>現在地 / ラーメン・つけ麺</div>
+        <div>現在地 / ラーメン・つけ麺</div>
       </div>
     </div>
   );

@@ -15,8 +15,6 @@ class App extends Component {
           <Header />
           <SubHeader />
           <HandlePages />
-          
-          
         </div>
       </BrowserRouter>
     );

@@ -1,6 +1,9 @@
 # やることリスト
-- cssをaphroditeに合成
-- srcフォルダーのフォルダー構成を考える
+- cssをaphroditeに合成（残り背景と影）
+- 背景を固定する方法を考える
+- 色を関数で指定
+- よく使うstyleを定義
+- Material-UIのコードを読む
 
 # 仕様
 - 複数形のもの、及びPageなど複数のものを管轄する必要があるものにはofを付け、CardRestaurantDetailなど単一のものにはofを付けない
