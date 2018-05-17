@@ -5,7 +5,7 @@ import menu from '../images/button_menu.svg';
 const styles = StyleSheet.create({
   menuIcon: {
     position: 'absolute',
-    top: '1rem',
+    top: '0',
     left: '1.5rem',
   }
 });

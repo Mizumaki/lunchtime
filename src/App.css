@@ -1,6 +1,16 @@
 body {
-  background: url(../src/images/wood-texture.jpg) no-repeat bottom fixed;
+  background: white url(../src/images/wood-texture.jpg) no-repeat fixed bottom;
   background-size: cover;
+}
+
+.food-image {
+  width: 100%;
+  height: 11rem;
+  /* TODO: ここはもう少し、デバイス見て確認する必要あり */
+  background: url(./images/afuri.jpg) top center / cover no-repeat;
+  border-radius: inherit;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .z-depth-1 {

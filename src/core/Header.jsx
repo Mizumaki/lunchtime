@@ -8,13 +8,13 @@ const styles = StyleSheet.create({
     height: '11%', // vhに直す
     maxHeight: '7rem',
     position: 'relative',
-    marginTop: '.5rem',
+    marginTop: '1rem',
     color: 'white',
   },
 
   headerString: {
     textAlign: 'center',
-    fontSize: '2.2rem',
+    fontSize: '2rem',
     height: '100 %',
   },
 
