@@ -1,8 +1,10 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 import { shadowZ3 } from '../styles/appCss';
-
-const imgUrl = '../images/afuri.jpg'
+import RestaurantInfo from './RestaurantInfo';
+import iconShow from '../images/arrow_down.svg';
+import iconClose from '../images/arrow_up.svg';
+import imgUrl from '../images/afuri.jpg';
 
 const styles = StyleSheet.create({
   resContainer: {
@@ -11,9 +13,6 @@ const styles = StyleSheet.create({
   },
 
   resContents: {
-    minHeight: '11.7rem',
-    height: '37vw', // 動作未確認　vwでheightを定義
-    maxHeight: '14rem',
     margin: '0 auto',
     minWidth: '28rem',
     width: '100%', // vwに直す
@@ -26,28 +25,38 @@ const styles = StyleSheet.create({
 
   resImage: {
     width: '100%',
-    height: '10.9rem', // TODO: ここはもう少し、デバイス見て確認する必要あり */
+    height: '11rem', // TODO: デバイスサイズにより、動的に変更 */
     backgroundPosition: 'top center',
     backgroundSize: 'cover',
-    backgroundImage: 'url(' + imgUrl + ')',
+    backgroundImage: `url(${imgUrl})`,
     backgroundRepeat: 'no-repeat',
     borderRadius: 'inherit',
     borderBottomLeftRadius: '0',
     borderBottomRightRadius: '0',
   },
 
-  resName: {
+  resHeader: {
     position: 'absolute',
     top: '0',
     left: '0',
-    fontSize: '2.4rem',
     fontWeight: 'bold',
     width: '100%', // %で指定ということは、親がwidth持たなくなったら機能しない？　要確認
-    padding: '.1em .5em',
+    padding: '0 .5em',
     background: 'rgba(255, 255, 255, 0.5)',
     borderRadius: 'inherit',
     borderBottomLeftRadius: '0',
-    borderBottomRightRadius: '0', 
+    borderBottomRightRadius: '0',
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+
+  resName: {
+    lineHeight: '1.3em'
+  },
+
+  resButton: {
+    outline: 'none',
+    height: '3rem',
   },
 
   resInfo: {
@@ -69,7 +78,7 @@ const styles = StyleSheet.create({
     borderRadius: '20px',
   },
 
-  resComment: { 
+  resComment: {
     fontSize: '1em', // .res-infoで決定したfont-sizeを引き継いでいるが、念のため */
     fontWeight: 'bold',
     overflow: 'hidden',
@@ -79,31 +88,42 @@ const styles = StyleSheet.create({
 
 });
 
-const backImage = {
-  width: '100%',
-  height: '10.9rem', // TODO: ここはもう少し、デバイス見て確認する必要あり */
-  backgroundPosition: 'top center',
-  backgroundSize: 'cover',
-  backgroundImage: 'url(' + imgUrl + ')',
-  backgroundRepeat: 'no-repeat',
-  borderRadius: 'inherit',
-  borderBottomLeftRadius: '0',
-  borderBottomRightRadius: '0',
-}
+class CardRestaurantDetail extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showDetail: false,
+    };
+  }
 
-const CardRestaurantDetail = (props) => {
-  return (
-    <div className={css(styles.resContainer)}>
-      <div className={css(styles.resContents)}>
-        <div style={backImage}></div>
-        <div className={css(styles.resName)}>{props.name}</div>
-        <div className={css(styles.resInfo)}>
-          <div className={css(styles.resDistance)}>{props.distance}</div>
-          <div className={css(styles.resComment)}>{props.comment}</div>
+  handleClick() {
+    this.setState({ showDetail: !this.state.showDetail });
+  }
+
+  render() {
+    const showDetail = this.state.showDetail;
+    const btnIcon = showDetail ?
+      (<img src={iconClose} alt="" />) : (<img src={iconShow} alt="" width="30px" />);
+    
+    const resDetail = showDetail ? (<RestaurantInfo />) : null;
+
+    return (
+      <div className={css(styles.resContainer)}>
+        <div className={css(styles.resContents)}>
+          <div className={css(styles.resImage)}></div>
+          <div className={css(styles.resHeader)}>
+            <h2 className={css(styles.resName)}>{this.props.name}</h2>
+            <button onClick={() => this.handleClick()} className={css(styles.resButton)}>{btnIcon}</button> {/* TODO: outline: none */}
+          </div>
+          <div className={css(styles.resInfo)}>
+            <div className={css(styles.resDistance)}>{this.props.distance}</div>
+            <div className={css(styles.resComment)}>{this.props.comment}</div>
+            {resDetail}
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default CardRestaurantDetail;
