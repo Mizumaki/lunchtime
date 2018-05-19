@@ -1,9 +1,12 @@
 # やることリスト
-- res詳細画面を作る（とりあえず詳細作ったらreactに貼って、行き方ページは後で
-- そもそもの構成を変える
+reactに移動
+とりまheaderクリックで遷移にしよか
+
+under-header-menuの下に一律のmargin欲しい。あと、別ページに行ったときどうするかも。
+
+一旦めんどくさいので、すべてcheckboxで考える。あとで、駅名検索とかを入れる
 
 - cssをaphroditeに合成（残り背景
-- 背景を固定する方法を考える
 - 使う色を決める
 - Material-UIのコードを読む
 - 検索画面を作る
@@ -17,8 +20,6 @@
 resultからdetailへの遷移イメージ
 resultをクリック -> detailへのLink -> stateのみopenにした、同じcomponentへリンク
 -> 開くanimation -> 
-
-大事なのは、同じcomponentをstate管理すること。それにより、
 
 # 仕様
 - 複数形のもの、及びPageなど複数のものを管轄する必要があるものにはofを付け、CardRestaurantDetailなど単一のものにはofを付けない

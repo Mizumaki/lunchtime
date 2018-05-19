@@ -103,7 +103,7 @@ class CardRestaurantDetail extends React.Component {
   render() {
     const showDetail = this.state.showDetail;
     const btnIcon = showDetail ?
-      (<img src={iconClose} alt="" />) : (<img src={iconShow} alt="" width="30px" />);
+      (<img src={iconClose} alt="" width="30px" />) : (<img src={iconShow} alt="" width="30px" />);
     
     const resDetail = showDetail ? (<RestaurantInfo />) : null;
 

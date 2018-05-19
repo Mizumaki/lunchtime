@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     color: 'white',
     fontSize: '1.8rem',
-    marginTop: '.5rem',
+    margin: '.5rem 0 1rem 0',
   },
 
   active: {
