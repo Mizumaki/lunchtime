@@ -1,5 +1,7 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
+import icon from '../images/plus.svg';
+import ButtonMore from '../utils/ButtonMore';
 
 const styles = StyleSheet.create({
   resMenu: {
@@ -27,7 +29,7 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
 
-  moreButtonSection: {
+  moreButtonWrap: {
     textAlign: 'right',
     marginTop: '1rem',
   },
@@ -36,6 +38,9 @@ const styles = StyleSheet.create({
     background: 'white',
     borderRadius: '5rem',
     outline: 'none',
+    '::before': {
+      content: `url(${icon})`,
+    }
   },
 
   resAbout: {},
@@ -66,8 +71,8 @@ const RestaurantInfo = (props) => {
             </tr>
           </tbody>
         </table>
-        <div className={css(styles.moreButtonSection)}>
-          <button name="more-menu" type="button" className={css(styles.moreButton)}>もっと見る</button>
+        <div className={css(styles.moreButtonWrap)}>
+          <ButtonMore string="もっと見る" left={true} />
         </div>
       </div>
       <div className={css(styles.resAbout)}>

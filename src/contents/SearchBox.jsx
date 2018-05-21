@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
 
 const SearchBox = (props) => {
   return (
-    <div className={css(styles.searchSection)}>
+    <div>
       <label for="searchBoxInSearch">店名で検索</label>
       <br />
       <div className={css(styles.searchBox)}>

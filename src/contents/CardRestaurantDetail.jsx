@@ -7,20 +7,16 @@ import iconClose from '../images/arrow_up.svg';
 import imgUrl from '../images/afuri.jpg';
 
 const styles = StyleSheet.create({
-  resContainer: {
-    padding: '1.3rem 2rem',
-    // res-contentsのwidthと密接な関わり。気を付ける
-  },
-
   resContents: {
-    margin: '0 auto',
-    minWidth: '28rem',
+    minWidth: '28rem', // TODO: ここらへんのサイズ指定は、一つ上のcard上で行いたい
     width: '100%', // vwに直す
     maxWidth: '34rem',
     borderRadius: '5px',
     position: 'relative',
     ...shadowZ3,
     background: '#E5E5E5',
+    margin: '0 auto',
+    marginBottom: '2.6rem',
   },
 
   resImage: {
@@ -50,13 +46,16 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
 
-  resName: {
-    lineHeight: '1.3em'
-  },
-
   resButton: {
     outline: 'none',
+    width: '100%',
     height: '3rem',
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+
+  resName: {
+    lineHeight: '1.3em'
   },
 
   resInfo: {
@@ -104,16 +103,17 @@ class CardRestaurantDetail extends React.Component {
     const showDetail = this.state.showDetail;
     const btnIcon = showDetail ?
       (<img src={iconClose} alt="" width="30px" />) : (<img src={iconShow} alt="" width="30px" />);
-    
+
     const resDetail = showDetail ? (<RestaurantInfo />) : null;
 
     return (
-      <div className={css(styles.resContainer)}>
         <div className={css(styles.resContents)}>
           <div className={css(styles.resImage)}></div>
           <div className={css(styles.resHeader)}>
-            <h2 className={css(styles.resName)}>{this.props.name}</h2>
-            <button onClick={() => this.handleClick()} className={css(styles.resButton)}>{btnIcon}</button> {/* TODO: outline: none */}
+            <button onClick={() => this.handleClick()} className={css(styles.resButton)}>
+              <h2 className={css(styles.resName)}>{this.props.name}</h2>
+              {btnIcon}
+            </button> {/* TODO: outline: none */}
           </div>
           <div className={css(styles.resInfo)}>
             <div className={css(styles.resDistance)}>{this.props.distance}</div>
@@ -121,7 +121,6 @@ class CardRestaurantDetail extends React.Component {
             {resDetail}
           </div>
         </div>
-      </div>
     );
   }
 }

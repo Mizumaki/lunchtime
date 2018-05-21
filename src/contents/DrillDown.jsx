@@ -1,5 +1,7 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
+import ButtonMore from '../utils/ButtonMore';
+import { Link } from 'react-router-dom';
 
 const styles = StyleSheet.create({
   conditions: {
@@ -27,7 +29,7 @@ const styles = StyleSheet.create({
   checkBoxes: {
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     padding: '.5rem 0',
   },
 
@@ -86,15 +88,13 @@ const styles = StyleSheet.create({
 
 const DrillDown = (props) => {
   return (
-    <div className={css(styles.drillDownSection)}>
+    <div>
       絞り込み検索（条件１ + 条件２
       <div className={css(styles.conditions)}>
         <div className={css(styles.condition)}>
           - 条件１：エリア・駅名・建物名
           <div className={css(styles.moreButtonPosition)}>
-            <button className={css(styles.moreButton)}>
-              <img src="./images/remove.svg" alt="" width="22px" />
-            </button>
+            <ButtonMore />
           </div>
           <div className={css(styles.checkBoxes)}>
             <div className={css(styles.checkBoxWrap)}>
@@ -118,7 +118,7 @@ const DrillDown = (props) => {
           - 条件２：食べたい料理のジャンル
           <div className={css(styles.moreButtonPosition)}>
             <button className={css(styles.moreButton)}>
-              <img src="./images/remove.svg" alt="" width="22px" />
+              <ButtonMore />
             </button>
           </div>
           <div className={css(styles.checkBoxes)}>
@@ -183,12 +183,14 @@ const DrillDown = (props) => {
           価格帯：ノーマル
           <div className={css(styles.moreButtonPosition)}>
             <button className={css(styles.moreButton)}>
-              <img src="./images/remove.svg" alt="" width="22px" />
+              <ButtonMore />
             </button>
           </div>
         </div>
         <div className={css(styles.searchButtonWrap)}>
-          <button className={css(styles.searchButton)}>検索する</button>
+          <Link to='/results'>
+            <button className={css(styles.searchButton)}>検索する</button>
+          </Link>
         </div>
       </div>
     </div>

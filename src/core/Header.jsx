@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 import AnytimeMenu from './AnytimeMenu';
+import { Link } from 'react-router-dom';
 
 const styles = StyleSheet.create({
   header: {
@@ -10,6 +11,11 @@ const styles = StyleSheet.create({
     position: 'relative',
     marginTop: '1rem',
     color: 'white',
+  },
+
+  headerLink: {
+    textDecoration: 'none',
+    color: 'inherit',
   },
 
   headerString: {
@@ -28,12 +34,14 @@ const Header = () => {
   return (
     <div className={css(styles.header)}>
       <AnytimeMenu />
-      <div className={css(styles.headerString)}>
-        {/* TODO: classNameの名前はもっとましなものにしたい */}
-        <div className={css(styles.siteName)}>LUNCHTIME</div>
-        {/* TODO: 疑似要素で検索アイコンsvgを挿入 */}
-        <div>現在地 / ラーメン・つけ麺</div>
-      </div>
+      <Link to='/search' className={css(styles.headerLink)}>
+        <div className={css(styles.headerString)}>
+          {/* TODO: classNameの名前はもっとましなものにしたい */}
+          <div className={css(styles.siteName)}>LUNCHTIME</div>
+          {/* TODO: 疑似要素で検索アイコンsvgを挿入 */}
+          <div>現在地 / ラーメン・つけ麺</div>
+        </div>
+      </Link>
     </div>
   );
 }

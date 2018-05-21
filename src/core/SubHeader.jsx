@@ -20,7 +20,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     borderBottom: '4px solid #FAAF3B',
   },
-
 });
 
 const SubHeader = (props) => {

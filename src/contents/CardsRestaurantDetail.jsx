@@ -5,7 +5,7 @@ import CardRestaurantDetail from './CardRestaurantDetail';
 const styles = StyleSheet.create({
 });
 
-const CardsOfRestaurantDetail = (props) => {
+const CardsRestaurantDetail = (props) => {
   return (
     <div>
       <CardRestaurantDetail name="AFURI 恵比寿" distance="200m" comment="さっぱりした味が女性に人気のラーメン屋" />
@@ -16,4 +16,4 @@ const CardsOfRestaurantDetail = (props) => {
   );
 }
 
-export default CardsOfRestaurantDetail;
+export default CardsRestaurantDetail;
