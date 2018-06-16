@@ -3,6 +3,7 @@ import { StyleSheet, css } from 'aphrodite';
 import Narrow from './Narrow';
 import NarrowChain from './NarrowChain';
 import { Link } from 'react-router-dom';
+import StationSelect from '../core/StationSelect';
 
 const styles = StyleSheet.create({
   wrap: {
@@ -47,6 +48,7 @@ const DrillDown = (props) => {
       <div>探す場所を選んでね！
         <div className={css(styles.wrap)}>
           <Narrow type="area" onChange={props.onAreaChange} />
+          <StationSelect display={props.selecting_station} onChange={props.onSearchQueryChange} />
           <Narrow type="chain" onChange={props.onChainChange} />
           <div className={css(styles.optionButtonsWrap)}>
             <button className={css(styles.optionButton)}>

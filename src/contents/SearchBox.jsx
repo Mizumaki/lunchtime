@@ -23,20 +23,24 @@ const styles = StyleSheet.create({
     height: '100%',
     background: 'white',
     margin: '0 auto',
+    padding: '0 .5em',
   },
 
 });
 
+// onChange と value が props として必要
+
 const SearchBox = (props) => {
+  const handleChange = (e) => { props.onChange(e.target.value); }
   return (
     <div>
-      <label for="searchBoxInSearch">店名で検索</label>
+      <label for="searchBoxInSearch">{props.label}</label>
       <br />
       <div className={css(styles.searchBox)}>
         <div className={css(styles.iconSearch)}>
           <img src={searchIcon} alt="" />
         </div>
-        <input type="text" className={css(styles.searchField)} id="searchBoxInSearch">
+        <input type="text" className={css(styles.searchField)} id="searchBoxInSearch" value={props.value} onChange={handleChange} >
         </input>
       </div>
     </div>
