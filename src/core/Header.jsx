@@ -19,13 +19,14 @@ const styles = StyleSheet.create({
   },
 
   headerString: {
+    paddingTop: '1rem',
     textAlign: 'center',
     fontSize: '2rem',
     height: '100 %',
   },
 
   siteName: {
-    fontSize: '.9em',
+    fontSize: '1.3em',
   },
 });
 
@@ -37,9 +38,9 @@ const Header = () => {
       <Link to='/search' className={css(styles.headerLink)}>
         <div className={css(styles.headerString)}>
           {/* TODO: classNameの名前はもっとましなものにしたい */}
-          <div className={css(styles.siteName)}>LUNCHTIME</div>
+          <div className={css(styles.siteName)}>Nomad Time</div>
           {/* TODO: 疑似要素で検索アイコンsvgを挿入 */}
-          <div>現在地 / ラーメン・つけ麺</div>
+          <div>現在地　周辺のノマドプレイス</div>
         </div>
       </Link>
     </div>

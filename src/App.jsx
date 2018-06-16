@@ -8,17 +8,35 @@ import HandlePages from './core/HandlePages';
 import './App.css';
 
 class App extends Component {
-  render() {
-    return (
-      <BrowserRouter>
-        <div>
-          <Header />
-          <SubHeader />
-          <HandlePages />
-        </div>
-      </BrowserRouter>
-    );
+  constructor(props) {
+    super(props);
+    this.handleSearchResultsChange = this.handleSearchResultsChange.bind(this);
+    this.handleSearchQueryChange = this.handleSearchQueryChange.bind(this);
+    this.state = {
+      search_results: [],
+      search_query: {area: "", chain: ""},
+    };
   }
+  
+  handleSearchResultsChange(data) {
+    this.setState({search_results: data});
+  }
+
+  handleSearchQueryChange(query) {
+    this.setState({search_query: query});
+  }
+
+  render() {
+  return (
+    <BrowserRouter>
+      <div>
+        <Header />
+        <SubHeader />
+        <HandlePages {...this.state}/>
+      </div>
+    </BrowserRouter>
+  );
+}
 }
 
 export default App;
