@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
 const NarrowStation = (props) => {
   return (
     <div className={css(styles.wrap)}>
-      <SearchBox label="駅名検索" value={props.station_name} onChange={props.onChange} />
+      <SearchBox label="駅名検索" value={props.station_name} {...props} />
     </div>
   );
 }

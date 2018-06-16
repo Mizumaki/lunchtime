@@ -28,10 +28,12 @@ const styles = StyleSheet.create({
 
 });
 
-// onChange と value が props として必要
+// onChange と onFocus と value が props として必要
 
 const SearchBox = (props) => {
   const handleChange = (e) => { props.onChange(e.target.value); }
+  const handleFocus = () => {}
+  const handleBlur = () => {}
   return (
     <div>
       <label for="searchBoxInSearch">{props.label}</label>
@@ -40,7 +42,7 @@ const SearchBox = (props) => {
         <div className={css(styles.iconSearch)}>
           <img src={searchIcon} alt="" />
         </div>
-        <input type="text" className={css(styles.searchField)} id="searchBoxInSearch" value={props.value} onChange={handleChange} >
+        <input type="text" className={css(styles.searchField)} id="searchBoxInSearch" value={props.value} onChange={handleChange} onFocus={props.onFocus} onBlur={props.onBlur} >
         </input>
       </div>
     </div>

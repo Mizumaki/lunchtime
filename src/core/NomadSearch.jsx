@@ -46,7 +46,6 @@ class PageSearch extends React.Component {
     });
 
     let search_by = ""
-    // let search_query = ""
     switch (value) {
       case "現在地":
         this.setState({ selecting_station: false });
