@@ -50,12 +50,13 @@ class PageSearch extends React.Component {
       case "現在地":
         this.setState({ selecting_station: false });
         search_by = "location";
+        console.log("現在地取得に入る")
         this.setState({ search_query: await present_location.getPosition() });
-        console.log("現在地")
+        console.log("現在地をsetState完了")
         break;
       case "駅名":
         search_by = "station";
-        this.setState({ selecting_station: !this.state.selecting_station });
+        this.setState({ selecting_station: true }); // await すること
         console.log("駅名")
         break;
       case "建物名":
@@ -67,8 +68,9 @@ class PageSearch extends React.Component {
         break;
     }
 
+    console.log("fetch処理に移る")
     console.log(this.state.search_query)
-
+    console.log("in if")
     fetch(`ttps://lunchtime-db.herokuapp.com/nmdp/${search_by}?${this.state.search_query}`, {
       mode: 'cors',
       credentials: 'include',

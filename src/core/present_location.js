@@ -8,7 +8,7 @@ export default class present_location {
           const lon = position.coords.longitude
           const lat = position.coords.latitude
           const result = `lon=${lon}&lat=${lat}`
-          console.log(result)
+          console.log("現在地取得完了")
           resolve(result);
         },
         // 取得失敗した場合
@@ -28,7 +28,7 @@ export default class present_location {
               break;
           }
           console.log(error.code);
-          resolve(error.code);
+          reject(error.code);
         }
       );
     })
