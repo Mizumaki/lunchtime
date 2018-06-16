@@ -45,7 +45,7 @@ class CircleButton extends React.Component {
   }
 
   handleCheckBox(e) {
-    this.state.is_selected ? this.props.delCheck(e.target.name) : this.props.addCheck(e.target.name);
+    this.state.is_selected ? this.props.delCheck(e.target.id) : this.props.addCheck(e.target.id);
     this.setState(prevState => ({
       is_selected: !prevState.is_selected
     }));
@@ -55,7 +55,7 @@ class CircleButton extends React.Component {
     const main = this.props.checkBox ?
       (
         <label className={css(styles.checkBox)}>
-          {this.props.name}<input type="checkbox" className={css(styles.none)} name={this.props.name} onClick={this.handleCheckBox} />
+          {this.props.name}<input type="checkbox" className={css(styles.none)} name={this.props.name} onClick={this.handleCheckBox} id={this.props.id} />
         </label>
       ) : (
         <button className={css(styles.checkBox)} name={this.props.name} onClick={this.handleRadioButton} >

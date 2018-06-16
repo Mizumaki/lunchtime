@@ -13,7 +13,7 @@ const HandlePages = (props) => {
     <div>
       <Route exact path='/' render={() => <Test />} />
       <Route path='/search' render={() => <NomadSearch {...props} />} />
-      <Route path='/results' render={() => <NomadSearchResults data={props.search_results} />} />
+      <Route path='/results' render={() => <NomadSearchResults data={props.search_results} chains={props.selected_chain} />} />
       {/* 以下、LUNCHTIME用のpath
       <Route exact path='/' render={() => <PageTop />} />
       <Route path='/search' render={() => <PageSearch />} />

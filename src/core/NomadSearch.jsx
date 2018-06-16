@@ -3,6 +3,7 @@ import { StyleSheet, css } from 'aphrodite';
 import NomadDrillDown from '../contents/NomadDrillDown';
 import NarrowNomad from '../contents/NarrowNomad';
 import present_location from './present_location';
+import { Link } from 'react-router-dom';
 
 const styles = StyleSheet.create({
   container: {
@@ -21,9 +22,21 @@ const styles = StyleSheet.create({
     padding: '1rem',
   },
 
+  searchButtonWrap: {
+    textAlign: 'center',
+    padding: '1rem',
+  },
+
+  searchButton: {
+    background: 'white',
+    width: '100%',
+    padding: '1rem',
+  },
+
+
 });
 
-class PageSearch extends React.Component {
+class NomadSearch extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -37,6 +50,12 @@ class PageSearch extends React.Component {
     this.handleAreaChange = this.handleAreaChange.bind(this);
     this.handleChainChange = this.handleChainChange.bind(this);
     this.handelSearchQueryChange = this.handelSearchQueryChange.bind(this);
+    this.handleSearchResultsChange = this.handleSearchResultsChange.bind(this);
+  }
+
+  // 親に伝える
+  handleSearchResultsChange(value) {
+    this.props.onDataChange(value);
   }
 
   async handleAreaChange(value) {
@@ -44,6 +63,8 @@ class PageSearch extends React.Component {
       selected_area: value,
       loading: true,
     });
+
+    this.props.onAreaChange(value);
 
     let search_by = ""
     switch (value) {
@@ -71,7 +92,7 @@ class PageSearch extends React.Component {
     console.log("fetch処理に移る")
     console.log(this.state.search_query)
     console.log("in if")
-    fetch(`ttps://lunchtime-db.herokuapp.com/nmdp/${search_by}?${this.state.search_query}`, {
+    fetch(`https://lunchtime-db.herokuapp.com/nmdp/${search_by}?${this.state.search_query}`, {
       mode: 'cors',
       credentials: 'include',
       headers: {
@@ -82,6 +103,7 @@ class PageSearch extends React.Component {
       .then(res => res.json())
       .then(
         (result) => {
+          this.handleSearchResultsChange(result);
           this.setState({
             data: result,
             loading: false,
@@ -104,6 +126,7 @@ class PageSearch extends React.Component {
     this.setState({
       selected_chain: value
     });
+    this.props.onChainChange(value);
   }
 
   render() {
@@ -111,11 +134,15 @@ class PageSearch extends React.Component {
       <div className={css(styles.container)}>
         <div className={css(styles.contents)}>
           <NomadDrillDown {...this.state} onAreaChange={this.handleAreaChange} onChainChange={this.handleChainChange} onSearchQueryChange={this.handelSearchQueryChange} />
-          <NarrowNomad chains={this.state.selected_chain} />
+          <div className={css(styles.searchButtonWrap)}>
+            <Link to='/results'>
+              <button className={css(styles.searchButton)}>検索する</button>
+            </Link>
+          </div>
         </div>
       </div>
     );
   }
 }
 
-export default PageSearch;
+export default NomadSearch;

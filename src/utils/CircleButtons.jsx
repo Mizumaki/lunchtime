@@ -69,10 +69,11 @@ class CircleButtons extends React.Component {
 
     switch (this.props.use) {
       case "area":
-        contents = ["現在地", "駅名", "建物名"];
+        contents = [{ name: "現在地" }, { name: "駅名" }, { name: "建物名" }];
         break;
       case "chain_main":
-        contents = ["マック", "スタバ", "ドトール"];
+        //contents = ["マック", "スタバ", "ドトール"];
+        contents = [{ name: "マック", id: 100 }, { name: "スタバ", id: 1 }, { name: "ドトール", id: 2 }];
         break;
       case "chain_sub":
         contents = ["サンマルク", "タリーズ", "ベローチェ", "プロント", "エクセルシオール", "カフェドクリエ", "上島珈琲", "コメダ珈琲", "ルノアール", "カフェミヤマ"];
@@ -82,14 +83,24 @@ class CircleButtons extends React.Component {
         break;
     }
 
-    const checkBoxes = contents.map((content_name) => {
+    //const checkBoxes = contents.map((content_name) => {
+    //  const button = this.props.checkBox ?
+    //    (<CircleButton name={content_name} addCheck={this.addCheck} delCheck={this.delCheck} checkBox={true} ref="checkBox" key={content_name.id} />)
+    //    : (<CircleButton name={content_name} onChange={this.handleRadioButton} checkBox={false} key={content_name.id} />);
+    //  return (
+    //    button
+    //  );
+    //}
+
+    const checkBoxes = contents.map((content) => {
       const button = this.props.checkBox ?
-        (<CircleButton name={content_name} addCheck={this.addCheck} delCheck={this.delCheck} checkBox={true} ref="checkBox" key={content_name.id} />)
-        : (<CircleButton name={content_name} onChange={this.handleRadioButton} checkBox={false} key={content_name.id} />);
+        (<CircleButton name={content.name} addCheck={this.addCheck} delCheck={this.delCheck} checkBox={true} ref="checkBox" key={content.id} id={content.id} />)
+        : (<CircleButton name={content.name} onChange={this.handleRadioButton} checkBox={false} key={content.id} id={content.id} />);
       return (
         button
       );
-    });
+    }
+    );
 
     return (
       <div className={css(styles.checkBoxes)}>

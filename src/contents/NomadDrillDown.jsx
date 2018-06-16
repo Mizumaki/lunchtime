@@ -1,8 +1,6 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 import Narrow from './Narrow';
-import NarrowChain from './NarrowChain';
-import { Link } from 'react-router-dom';
 import StationSelect from '../core/StationSelect';
 
 const styles = StyleSheet.create({
@@ -28,18 +26,6 @@ const styles = StyleSheet.create({
   none: {
     display: 'none',
   },
-
-  searchButtonWrap: {
-    textAlign: 'center',
-    padding: '1rem',
-  },
-
-  searchButton: {
-    background: 'white',
-    width: '100%',
-    padding: '1rem',
-  },
-
 });
 
 const DrillDown = (props) => {
@@ -58,11 +44,7 @@ const DrillDown = (props) => {
               さらに見る
             </button>
           </div>
-          <div className={css(styles.searchButtonWrap)}>
-            <Link to='/results'>
-              <button className={css(styles.searchButton)}>検索する</button>
-            </Link>
-          </div>
+          
         </div>
       </div>
     </div>

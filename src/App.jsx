@@ -11,10 +11,12 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.handleSearchResultsChange = this.handleSearchResultsChange.bind(this);
-    this.handleSearchQueryChange = this.handleSearchQueryChange.bind(this);
+    this.handleAreaChange = this.handleAreaChange.bind(this);
+    this.handleChainChange = this.handleChainChange.bind(this);
     this.state = {
       search_results: [],
-      search_query: {area: "", chain: ""},
+      selected_area: [],
+      selected_chain: [],
     };
   }
   
@@ -22,8 +24,12 @@ class App extends Component {
     this.setState({search_results: data});
   }
 
-  handleSearchQueryChange(query) {
-    this.setState({search_query: query});
+  handleAreaChange(value) {
+    this.setState({selected_area: value});
+  }
+
+  handleChainChange(value) {
+    this.setState({ selected_chain: value });
   }
 
   render() {
@@ -32,7 +38,7 @@ class App extends Component {
       <div>
         <Header />
         <SubHeader />
-        <HandlePages {...this.state}/>
+        <HandlePages onDataChange={this.handleSearchResultsChange} onAreaChange={this.handleAreaChange} onChainChange={this.handleChainChange} {...this.state}/>
       </div>
     </BrowserRouter>
   );
