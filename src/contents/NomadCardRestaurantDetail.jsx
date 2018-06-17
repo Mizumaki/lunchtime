@@ -102,28 +102,75 @@ class CardRestaurantDetail extends React.Component {
     const btnIcon = showDetail ?
       (<img src={iconClose} alt="" width="30px" />) : (<img src={iconShow} alt="" width="30px" />);
 
-    const resDetail = showDetail ? (<NomadInfo />) : null;
+
+    const nmdp = this.props.nmdp
+    // データの型がbooleanなどもあるため、ここで関数に代入しておく
+    const name = nmdp.name
+    const chain_name = this.props.chain_name
+    const day_off = this.props.day_off
+    const address = nmdp.address
+    const phone_number = nmdp.phone_number
+
+    const resDetail = showDetail ? (<NomadInfo address={address} phone_number={phone_number} location={this.props.location} />) : null;
+    let has_wifi = "不明"
+    switch (nmdp.has_wifi) {
+      case true:
+        has_wifi = "あり";
+        break;
+      case null:
+        has_wifi = "不明";
+        break;
+      case false:
+        has_wifi = "なし";
+        break;
+      default:
+        break;
+    }
+
+    let has_charge = "不明"
+    switch (nmdp.has_charge) {
+      case true:
+        has_charge = "あり";
+        break;
+      case null:
+        has_charge = "不明";
+        break;
+      case false:
+        has_charge = "なし";
+        break;
+      default:
+        break;
+    }
+
+    const weekday = `${this.props.weekday.start}～${this.props.weekday.end}`
+    const saturday = `${this.props.saturday.start}～${this.props.saturday.end}`
+    const sunday = (this.props.day_off == "日") ?
+      "-" : `${this.props.sunday.start}～${this.props.sunday.end}`;
+
+    const bsh = (saturday == sunday) ?
+      (<div>月～金： {weekday}<br />土日： {saturday}</div>) : (<div>月～金： {weekday}<br />土： {saturday}<br />日： {sunday}</div>);
+    console.log(bsh)
 
     return (
       <div className={css(styles.resContents)}>
         <div className={css(styles.resHeader)}>
           <div onClick={() => this.handleClick()} className={css(styles.resButton)}>
             <h2 className={css(styles.resName)}>
-              {this.props.chainName}<br />
-              {this.props.name}
+              {chain_name}<br />
+              {name}
             </h2>
             <div className={css(styles.nomadInfo)}>
               <div>
                 <div className={css(styles.nomadTimeDetail)}>
                   <div>営業<br />時間</div>
-                  <div>月～金： 07:00～21:00<br />土： 08:00～18:00</div>
-                  <div>定休日：日曜日</div>
+                  {bsh}
+                  <div>定休日：{day_off}</div>
                 </div>
                 <div className={css(styles.nomadApplianceDetail)}>
                   <div>電源：</div>
-                  <div>不明</div>
+                  <div>{has_charge}</div>
                   <div>無料Wifi：</div>
-                  <div>あり</div>
+                  <div>{has_wifi}</div>
                 </div>
               </div>
               <div>{btnIcon}</div>

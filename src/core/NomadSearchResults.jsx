@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 import NomadCardsRestaurantDetail from '../contents/NomadCardsRestaurantDetail';
+import present_location from './present_location'
 
 const styles = StyleSheet.create({
   container: {
@@ -32,6 +33,9 @@ class NomadSearchResults extends React.Component {
       console.log(filtered_data)
       results = results.concat(filtered_data);
     });
+    if (chains == "") {
+      results = data_all
+    }
     console.log(results); 
     this.setState({results: results});
   }
@@ -39,7 +43,7 @@ class NomadSearchResults extends React.Component {
   render() {
     return (
       <div className={css(styles.container)}>
-        <NomadCardsRestaurantDetail />
+        <NomadCardsRestaurantDetail data={this.state.results} my_location={this.props.my_location} />
       </div >
     );
   }

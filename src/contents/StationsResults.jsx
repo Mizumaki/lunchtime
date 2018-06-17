@@ -24,13 +24,20 @@ const styles = StyleSheet.create({
 class StationsResults extends React.Component {
   constructor(props) {
     super(props);
+    this.clickStation = this.clickStation.bind(this);
+  }
+
+  clickStation(e) {
+    this.props.onClick(e.currentTarget.value);
+    console.log(e.currentTarget.value);
+    console.log("its me")
   }
 
   render() {
-    const clickStation = (e) => { this.props.onClick(e.target.value); console.log(e.target.value)}
+    //const clickStation = (e) => { this.props.onClick(e.target.value); console.log(e.target.value); console.log("its me")}
     const results = this.props.stations.map((station) => {
       return (
-        <button className={css(styles.station)} key={station.id} value={station.id} onClick={clickStation}>
+        <button className={css(styles.station)} key={station.id} value={station.id} onClick={this.clickStation}>
           <span className={css(styles.name)}>{station.name}</span>
           <span className={css(styles.company)}>{station.company_name}</span>
         </button>

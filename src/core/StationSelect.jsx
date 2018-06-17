@@ -11,8 +11,9 @@ class StationSelect extends React.Component {
     super(props);
     this.state = {
       station_name: '',
+      station_id: '',
       is_focused: false,
-      stations: [{ "id": 1380, "name": "田町", "company_name": "JR東日本" }, { "id": 8893, "name": "田町", "company_name": "岡山電気軌道" }],
+      stations: [],
     };
     this.handleStationNameChange = this.handleStationNameChange.bind(this);
     this.handleFocus = this.handleFocus.bind(this);
@@ -35,7 +36,8 @@ class StationSelect extends React.Component {
   }
 
   handleOnClick(value) {
-    this.props.onChange(value)
+    this.props.onChange(value);
+    this.setState({ station_id: value });
   }
 
   searchStation() {
@@ -66,7 +68,7 @@ class StationSelect extends React.Component {
     const contents = this.props.display ?
       (<div>
         <NarrowStation onChange={this.handleStationNameChange} onClick={this.searchStation} onFocus={this.handleFocus} onBlur={this.handleBlur} {...this.state} />
-        <StationsResults stations={this.state.stations} onClick={this.props.onChange} />
+        <StationsResults stations={this.state.stations} onClick={this.handleOnClick} />
       </div>) : (null);
 
     return (

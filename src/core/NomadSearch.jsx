@@ -72,7 +72,10 @@ class NomadSearch extends React.Component {
         this.setState({ selecting_station: false });
         search_by = "location";
         console.log("現在地取得に入る")
-        this.setState({ search_query: await present_location.getPosition() });
+        const lonlat = await present_location.getPosition();
+        this.props.onMyLocationChange(lonlat);
+        const lonlat_query = `lon=${lonlat.longitude}&lat=${lonlat.latitude}`
+        this.setState({ search_query: lonlat_query });
         console.log("現在地をsetState完了")
         break;
       case "駅名":
@@ -118,8 +121,37 @@ class NomadSearch extends React.Component {
       )
   }
 
-  handelSearchQueryChange(value) {
+  async handelSearchQueryChange(value) {
     this.setState({ search_query: value });
+    const search_query = await value
+    console.log("fetch処理に移る")
+    console.log(this.state.search_query)
+    console.log("in if")
+    fetch(`https://lunchtime-db.herokuapp.com/nmdp/station?id=${this.state.search_query}`, {
+      mode: 'cors',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    })
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.handleSearchResultsChange(result);
+          this.setState({
+            data: result,
+            loading: false,
+          });
+        },
+        (error) => {
+          this.setState({
+            data: error,
+            loading: false,
+          });
+        }
+      )
+    
   }
 
   handleChainChange(value) {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 import icon from '../images/plus.svg';
+import MyMapComponent from '../core/MyMapComponent';
 import ButtonMore from '../utils/ButtonMore';
 
 const styles = StyleSheet.create({
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
 const RestaurantInfo = (props) => {
   return (
     <div>
-      <div className={css(styles.resMenu)}>
+      {/* <div className={css(styles.resMenu)}>
         <h3>メニュー</h3>
         <table className={css(styles.resMenuTable)}>
           <tbody>
@@ -74,12 +75,22 @@ const RestaurantInfo = (props) => {
         <div className={css(styles.moreButtonWrap)}>
           <ButtonMore string="もっと見る" left={true} />
         </div>
-      </div>
+      </div> */}
       <div className={css(styles.resAccess)}>
-        <p>行き方はこちら</p>
+        <p>地図 from Google</p>
+        <MyMapComponent
+          isMarkerShown
+          googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbyNSrNpnNSw7vOXTHC1Kd35OP3GlmGy8&v=3.exp&libraries=geometry,drawing,places"
+          loadingElement={<div style={{ height: `100%` }} />}
+          containerElement={<div style={{ height: `200px` }} />}
+          mapElement={<div style={{ height: `100%` }} />}
+          location={props.location}
+        />
       </div>
       <div className={css(styles.resBasicInfo)}>
         <h3>基本情報</h3>
+        <p>電話番号：<br/>{props.phone_number}</p>
+        <p>住所：<br/>{props.address}</p>
       </div>
     </div>
   );
