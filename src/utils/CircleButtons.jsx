@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
   checkBoxes: {
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     padding: '.5rem 0',
   },
 
@@ -69,11 +69,12 @@ class CircleButtons extends React.Component {
 
     switch (this.props.use) {
       case "area":
-        contents = [{ name: "現在地" }, { name: "駅名" }, { name: "建物名" }];
+        contents = [{ name: "現在地" }, { name: "駅名" }];
+        //contents = [{ name: "現在地" }, { name: "駅名" }, { name: "建物名" }];
         break;
       case "chain_main":
-        //contents = ["マック", "スタバ", "ドトール"];
         contents = [{ name: "マック", id: 100 }, { name: "スタバ", id: 1 }, { name: "ドトール", id: 2 }];
+        contents = [{ name: "スタバ", id: 1 }, { name: "ドトール", id: 2 }];
         break;
       case "chain_sub":
         contents = ["サンマルク", "タリーズ", "ベローチェ", "プロント", "エクセルシオール", "カフェドクリエ", "上島珈琲", "コメダ珈琲", "ルノアール", "カフェミヤマ"];

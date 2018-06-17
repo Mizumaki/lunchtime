@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 
-const styles = StyleSheet.create({
+let styles = StyleSheet.create({
   checkBoxWrap: {
     flex: '0 0 33%',
     display: 'flex', // 子要素のlabelをblock要素にする必要があるが、labelはdisplay: flex;をすでに指定されているので、親側でflexにすることで指定
@@ -18,6 +18,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     background: 'white',
+    borderRadius: '5rem',
+    width: '100%',
+    height: '100%',
+  },
+
+  checkBoxSelected: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    background: 'white',
+    border: '5px solid pink',
     borderRadius: '5rem',
     width: '100%',
     height: '100%',
@@ -52,13 +63,14 @@ class CircleButton extends React.Component {
   }
 
   render() {
+    const cssStyle = this.state.is_selected ? (css(styles.checkBoxSelected)):(css(styles.checkBox));
     const main = this.props.checkBox ?
       (
-        <label className={css(styles.checkBox)}>
+        <label className={cssStyle}>
           {this.props.name}<input type="checkbox" className={css(styles.none)} name={this.props.name} onClick={this.handleCheckBox} id={this.props.id} />
         </label>
       ) : (
-        <button className={css(styles.checkBox)} name={this.props.name} onClick={this.handleRadioButton} >
+        <button className={cssStyle} name={this.props.name} onClick={this.handleRadioButton} >
           {this.props.name}
         </button>
       );

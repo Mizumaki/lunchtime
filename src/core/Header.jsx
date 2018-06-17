@@ -40,7 +40,7 @@ const Header = () => {
           {/* TODO: classNameの名前はもっとましなものにしたい */}
           <div className={css(styles.siteName)}>Nomad Time</div>
           {/* TODO: 疑似要素で検索アイコンsvgを挿入 */}
-          <div>現在地　周辺のノマドプレイス</div>
+          <div>ノマドプレイス</div>
         </div>
       </Link>
     </div>

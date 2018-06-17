@@ -37,14 +37,14 @@ const DrillDown = (props) => {
           <StationSelect display={props.selecting_station} onChange={props.onSearchQueryChange} />
           <Narrow type="chain" onChange={props.onChainChange} />
           <div className={css(styles.optionButtonsWrap)}>
-            <button className={css(styles.optionButton)}>
+        {/*<button className={css(styles.optionButton)}>
               まだ決めてない
             </button>
             <button className={css(styles.optionButton)}>
               さらに見る
             </button>
+          */}
           </div>
-          
         </div>
       </div>
     </div>
