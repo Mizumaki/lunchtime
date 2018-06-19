@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
-import NomadCardsRestaurantDetail from '../contents/NomadCardsRestaurantDetail';
+import CardsNomadDetail from '../contents/CardsNomadDetail';
 import present_location from './present_location'
 
 const styles = StyleSheet.create({
@@ -43,7 +43,7 @@ class NomadSearchResults extends React.Component {
   render() {
     return (
       <div className={css(styles.container)}>
-        <NomadCardsRestaurantDetail data={this.state.results} my_location={this.props.my_location} />
+        <CardsNomadDetail data={this.state.results} my_location={this.props.my_location} />
       </div >
     );
   }

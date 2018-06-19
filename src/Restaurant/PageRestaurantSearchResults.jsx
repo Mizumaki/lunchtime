@@ -1,3 +1,4 @@
+/*
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 import CardsRestaurantDetail from '../contents/CardsRestaurantDetail';
@@ -17,3 +18,4 @@ const PageRestaurantSearchResults = (props) => {
 }
 
 export default PageRestaurantSearchResults;
+*/

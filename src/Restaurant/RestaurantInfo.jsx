@@ -1,3 +1,4 @@
+/*
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 import icon from '../images/plus.svg';
@@ -98,3 +99,4 @@ const RestaurantInfo = (props) => {
 }
 
 export default RestaurantInfo;
+*/

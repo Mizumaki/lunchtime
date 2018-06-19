@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
 const PageTop = (props) => {
   return (
     <div className={css(styles.toSearch)}>
-      <p>近くの美味しいお店を<br />30秒で探そう！</p>
+      <p>近くのノマドプレイスを<br />30秒で探そう！</p>
       <button type='button' className={css(styles.searchButton)}>今すぐ検索！</button>
     </div>
   );

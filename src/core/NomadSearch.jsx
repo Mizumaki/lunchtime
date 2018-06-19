@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 import NomadDrillDown from '../contents/NomadDrillDown';
-import NarrowNomad from '../contents/NarrowNomad';
 import present_location from './present_location';
 import { Link } from 'react-router-dom';
 

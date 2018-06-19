@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const styles = StyleSheet.create({
   header: {
-    minHeight: '6rem',
+    minHeight: '6rem',  
     height: '11%', // vhに直す
     maxHeight: '7rem',
     position: 'relative',

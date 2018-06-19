@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 import geolib from 'geolib';
-import NomadCardRestaurantDetail from './NomadCardRestaurantDetail';
+import CardNomadDetail from './CardNomadDetail';
 
 const styles = StyleSheet.create({
 });
 
-const CardsRestaurantDetail = (props) => {
+const CardsNomadDetail = (props) => {
   const my_location = props.my_location
   const cards = props.data.map((nmdp) => {
     let chain_name = ""
@@ -65,7 +65,7 @@ const CardsRestaurantDetail = (props) => {
     const saturday = nmdp.business_hours[6] ? { start: cutting(nmdp.business_hours[6].start_time), end: cutting(nmdp.business_hours[6].end_time)}:{};
     const sunday = nmdp.business_hours[0] ? {start: cutting(nmdp.business_hours[0].start_time), end: cutting(nmdp.business_hours[0].end_time) }:{};
 
-    return (<NomadCardRestaurantDetail nmdp={nmdp} chain_name={chain_name} distance={`${distance}`} day_off={day_off} weekday={weekday} saturday={saturday} sunday={sunday} location={nmdp_location} key={nmdp.id} />)
+    return (<CardNomadDetail nmdp={nmdp} chain_name={chain_name} distance={`${distance}`} day_off={day_off} weekday={weekday} saturday={saturday} sunday={sunday} location={nmdp_location} key={nmdp.id} />)
   })
   return (
     <div>
@@ -74,4 +74,4 @@ const CardsRestaurantDetail = (props) => {
   );
 }
 
-export default CardsRestaurantDetail;
+export default CardsNomadDetail;

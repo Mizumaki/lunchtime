@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
 
 });
 
-class CardRestaurantDetail extends React.Component {
+class CardNomadDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -118,7 +118,7 @@ class CardRestaurantDetail extends React.Component {
         has_wifi = "あり";
         break;
       case null:
-        has_wifi = "不明";
+        has_wifi = "データなし";
         break;
       case false:
         has_wifi = "なし";
@@ -186,4 +186,4 @@ class CardRestaurantDetail extends React.Component {
   }
 }
 
-export default CardRestaurantDetail;
+export default CardNomadDetail;

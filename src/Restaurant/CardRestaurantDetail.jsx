@@ -1,3 +1,4 @@
+/*
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 import { shadowZ3 } from '../styles/appCss';
@@ -21,7 +22,7 @@ const styles = StyleSheet.create({
 
   resImage: {
     width: '100%',
-    height: '11rem', // TODO: デバイスサイズにより、動的に変更 */
+    height: '11rem', // TODO: デバイスサイズにより、動的に変更 
     backgroundPosition: 'top center',
     backgroundSize: 'cover',
     backgroundImage: `url(${imgUrl})`,
@@ -78,7 +79,7 @@ const styles = StyleSheet.create({
   },
 
   resComment: {
-    fontSize: '1em', // .res-infoで決定したfont-sizeを引き継いでいるが、念のため */
+    fontSize: '1em', // .res-infoで決定したfont-sizeを引き継いでいるが、念のため 
     fontWeight: 'bold',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
@@ -113,7 +114,7 @@ class CardRestaurantDetail extends React.Component {
             <button onClick={() => this.handleClick()} className={css(styles.resButton)}>
               <h2 className={css(styles.resName)}>{this.props.name}</h2>
               {btnIcon}
-            </button> {/* TODO: outline: none */}
+            </button> 
           </div>
           <div className={css(styles.resInfo)}>
             <div className={css(styles.resDistance)}>{this.props.distance}</div>
@@ -126,3 +127,4 @@ class CardRestaurantDetail extends React.Component {
 }
 
 export default CardRestaurantDetail;
+*/
