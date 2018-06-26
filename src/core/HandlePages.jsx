@@ -1,15 +1,15 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import PageTop from './PageTop';
-import NomadSearch from './NomadSearch';
-import NomadSearchResults from './NomadSearchResults';
+import PageTop from '../nomad/PageTop';
+import PageSearch from '../nomad/PageSearch';
+import PageSearchResults from '../nomad/PageSearchResults';
 
 const HandlePages = (props) => {
   return (
     <div>
       <Route exact path='/' render={() => <PageTop />} />
-      <Route path='/search' render={() => <NomadSearch {...props} />} />
-      <Route path='/results' render={() => <NomadSearchResults data={props.search_results} chains={props.selected_chain} my_location={props.my_location} />} />      
+      <Route path='/search' render={() => <PageSearch onDataChange={props.onDataChange} onNarrowsChange={props.onNarrowsChange} onMyLocationChange={props.onMyLocationChange} />} />
+      <Route path='/results' render={() => <PageSearchResults data={props.data} narrows={props.narrows} my_location={props.my_location} />} />
     </div>
   );
 }

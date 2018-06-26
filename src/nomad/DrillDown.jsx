@@ -69,7 +69,7 @@ class DrillDown extends React.Component {
     return (
       <div>探す場所を選んでね！
         <DrillButtons onClick={this.handleSelectDrillButton} error={this.props.error} />
-        <GenerateSearchPath onChange={this.handelSearchPathChange} selectedDrillButton={this.state.selected_drill_button} />
+        <GenerateSearchPath onChange={this.handelSearchPathChange} selectedDrillButton={this.state.selected_drill_button} onMyLocationChange={this.props.onMyLocationChange} />
       </div>
     );
   }

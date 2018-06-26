@@ -96,7 +96,7 @@ class PageSearch extends React.Component {
         <div className={css(styles.contents)}>
           <div className={css(styles.searchWrap)}>
             <TextSearch /> {/* 今のところ null */}
-            <DrillDown onDataChange={this.props.onDataChange} onDone={this.handleDrillDownSelectDone} onCondition={this.handleCondition} onError={this.handleError} error={this.state.data_fetch_error} />
+            <DrillDown onDataChange={this.props.onDataChange} onDone={this.handleDrillDownSelectDone} onCondition={this.handleCondition} onError={this.handleError} error={this.state.data_fetch_error} onMyLocationChange={this.props.onMyLocationChange} />
             <Narrows onNarrowsChange={this.props.onNarrowsChange} />
             {/* 
             <div className={css(styles.optionButtonsWrap)}>

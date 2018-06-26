@@ -25,6 +25,7 @@ class GenerateSearchPath extends React.Component {
   }
 
   handleLocationSelected(lonlat) {
+    this.props.onMyLocationChange(lonlat);
     const search_path = `location?lon=${lonlat.longitude}&lat=${lonlat.latitude}`
     this.setState({ search_path: search_path });
     this.props.onChange(search_path);

@@ -27,7 +27,7 @@ const CardsDetail = (props) => {
     const lat = lonlat[1]
     const nmdp_location = { latitude: lat, longitude: lon }
     let distance = ""
-    if (my_location != null && nmdp_location !== null) {
+    if (my_location.longitude !== "" && my_location.latitude !== "") {
       const dis = geolib.getDistance(my_location, nmdp_location);
       distance = `${dis}m`
     }
@@ -66,7 +66,7 @@ const CardsDetail = (props) => {
     const sunday = nmdp.business_hours[0] ? {start: cutting(nmdp.business_hours[0].start_time), end: cutting(nmdp.business_hours[0].end_time) }:{};
 
     return (<CardDetail nmdp={nmdp} chain_name={chain_name} distance={`${distance}`} day_off={day_off} weekday={weekday} saturday={saturday} sunday={sunday} location={nmdp_location} key={nmdp.id} />)
-  })) : (null)
+  })) : (<p>検索結果は0件です。</p>)
   return (
     <div>
       {cards}

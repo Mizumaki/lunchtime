@@ -107,7 +107,7 @@ const NomadInfo = (props) => {
           <div className={css(styles.mapUrl)}><a href={ios_map_url}>iOS用マップ ＞</a></div>
           <div className={css(styles.mapUrl)}><a href={android_map_url}>Googleマップ ＞</a></div>
         </div>
-      </div>
+      </div>  
       <div className={css(styles.resBasicInfo)}>
         <h3>基本情報</h3>
         <p>電話番号：<br/>{props.phone_number}</p>
