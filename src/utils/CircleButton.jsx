@@ -37,7 +37,6 @@ let styles = StyleSheet.create({
   none: {
     display: 'none',
   },
-
 });
 
 class CircleButton extends React.Component {
