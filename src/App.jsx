@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import Header from './core/Header'
 import SubHeader from './core/SubHeader';
-import HandlePages from './core/HandlePages';
+import HandlePages from './core/HandlePages-copy';
 
 // あとあと消す
 import './App.css';
@@ -10,32 +10,20 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.handleSearchResultsChange = this.handleSearchResultsChange.bind(this);
-    this.handleAreaChange = this.handleAreaChange.bind(this);
-    this.handleChainChange = this.handleChainChange.bind(this);
-    this.handleMyLocationChange = this.handleMyLocationChange.bind(this);
+    this.handleDataChange = this.handleDataChange.bind(this);
+    this.handleNarrowsChange = this.handleNarrowsChange.bind(this);
     this.state = {
-      search_results: [],
-      selected_area: [],
-      selected_chain: [],
-      my_location: null,
+      data: [],
+      narrows: [],
     };
   }
 
-  handleSearchResultsChange(data) {
-    this.setState({ search_results: data });
+  handleDataChange(value) {
+    this.setState({ data: value });
   }
 
-  handleAreaChange(value) {
-    this.setState({ selected_area: value });
-  }
-
-  handleChainChange(value) {
-    this.setState({ selected_chain: value });
-  }
-
-  handleMyLocationChange(value) {
-    this.setState({ my_location: value });
+  handleNarrowsChange(value) {
+    this.setState({ narrows: value });
   }
 
   render() {
@@ -44,7 +32,7 @@ class App extends Component {
         <div>
           <Header />
           <SubHeader />
-          <HandlePages onDataChange={this.handleSearchResultsChange} onAreaChange={this.handleAreaChange} onChainChange={this.handleChainChange} onMyLocationChange={this.handleMyLocationChange} {...this.state} />
+          <HandlePages onDataChange={this.handleDataChange} onNarrowsChange={this.handleNarrowsChange} {...this.state} />
         </div>
       </BrowserRouter>
     );
