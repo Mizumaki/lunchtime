@@ -1,14 +1,14 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 import geolib from 'geolib';
-import CardNomadDetail from './CardNomadDetail';
+import CardDetail from './CardDetail';
 
 const styles = StyleSheet.create({
 });
 
 const CardsDetail = (props) => {
   const my_location = props.my_location
-  const cards = props.data.map((nmdp) => {
+  const cards = props.data.length !== 0 ? (props.data.map((nmdp) => {
     let chain_name = ""
     switch (nmdp.chain_id) {
       case 1:
@@ -65,8 +65,8 @@ const CardsDetail = (props) => {
     const saturday = nmdp.business_hours[6] ? { start: cutting(nmdp.business_hours[6].start_time), end: cutting(nmdp.business_hours[6].end_time)}:{};
     const sunday = nmdp.business_hours[0] ? {start: cutting(nmdp.business_hours[0].start_time), end: cutting(nmdp.business_hours[0].end_time) }:{};
 
-    return (<CardNomadDetail nmdp={nmdp} chain_name={chain_name} distance={`${distance}`} day_off={day_off} weekday={weekday} saturday={saturday} sunday={sunday} location={nmdp_location} key={nmdp.id} />)
-  })
+    return (<CardDetail nmdp={nmdp} chain_name={chain_name} distance={`${distance}`} day_off={day_off} weekday={weekday} saturday={saturday} sunday={sunday} location={nmdp_location} key={nmdp.id} />)
+  })) : (null)
   return (
     <div>
       {cards}

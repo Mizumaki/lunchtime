@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   },
 
   resMenuTableRow: {
-    borderBottom: '1px solid black', 
+    borderBottom: '1px solid black',
   },
 
   resMenuTableCell: {

@@ -30,11 +30,11 @@ const Narrow = (props) => {
     default:
       break;
   }
-  
+
   return (
     <div className={css(styles.relative)}>
       {string}
-        <div className={css(styles.moreButtonPosition)} >
+      <div className={css(styles.moreButtonPosition)} >
         <ButtonMore />
       </div>
       {buttons}

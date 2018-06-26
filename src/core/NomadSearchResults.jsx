@@ -33,7 +33,7 @@ class NomadSearchResults extends React.Component {
       console.log(filtered_data)
       results = results.concat(filtered_data);
     });
-    if (chains == "") {
+    if (chains.length === 0) {
       results = data_all
     }
     console.log(results); 

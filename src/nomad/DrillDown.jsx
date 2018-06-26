@@ -1,100 +1,42 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
-import NomadDrillDown from '../contents/NomadDrillDown';
-import present_location from './present_location';
-import { Link } from 'react-router-dom';
+import DrillButtons from './DrillButtons';
+import GenerateSearchPath from './GenerateSearchPath';
 
 const styles = StyleSheet.create({
-  container: {
-    padding: '0 .3rem',
-  },
-
-  contents: {
-    background: '#E5E5E5',
-    borderRadius: '4rem',
-    padding: '1rem 2.5rem',
-    fontWeight: 'bold',
-  },
-
-  or: {
-    textAlign: 'center',
-    padding: '1rem',
-  },
-
-  searchButtonWrap: {
-    textAlign: 'center',
-    padding: '1rem',
-  },
-
-  searchButton: {
-    background: 'white',
-    width: '100%',
-    padding: '1rem',
-  },
-
-
 });
 
-class NomadSearch extends React.Component {
+// onDataChange, onDone, onError, error をpropsで持つ
+// search_pathをもとにデータをfetch、this.state.results に入れつつ、親にdataを返す
+class DrillDown extends React.Component {
   constructor(props) {
     super(props);
+    this.handelSearchPathChange = this.handelSearchPathChange.bind(this);
+    this.handleSelectDrillButton = this.handleSelectDrillButton.bind(this);
     this.state = {
-      selected_area: [],
-      selected_chain: [],
-      selecting_station: false,
-      search_query: '',
-      data: [],
-      loading: false,
+      selected_drill_button: "",
+      search_path: '',
+      results: [],
     }
-    this.handleAreaChange = this.handleAreaChange.bind(this);
-    this.handleChainChange = this.handleChainChange.bind(this);
-    this.handelSearchQueryChange = this.handelSearchQueryChange.bind(this);
-    this.handleSearchResultsChange = this.handleSearchResultsChange.bind(this);
   }
 
-  // 親に伝える
-  handleSearchResultsChange(value) {
-    this.props.onDataChange(value);
+  handleSelectDrillButton(value) {
+    // selected_drill_button を更新
+    this.setState({ selected_drill_button: value });
+    this.props.onError(""); // 絞り込みの形式が代わったら、data_fetch_errorを
   }
 
-  async handleAreaChange(value) {
-    this.setState({
-      selected_area: value,
-      loading: true,
-    });
-
-    this.props.onAreaChange(value);
-
-    let search_by = ""
-    switch (value) {
-      case "現在地":
-        this.setState({ selecting_station: false });
-        search_by = "location";
-        console.log("現在地取得に入る")
-        const lonlat = await present_location.getPosition();
-        this.props.onMyLocationChange(lonlat);
-        const lonlat_query = `lon=${lonlat.longitude}&lat=${lonlat.latitude}`
-        this.setState({ search_query: lonlat_query });
-        console.log("現在地をsetState完了")
-        break;
-      case "駅名":
-        search_by = "station";
-        this.setState({ selecting_station: true }); // await すること
-        console.log("駅名")
-        break;
-      case "建物名":
-        this.setState({ selecting_station: false });
-        search_by = "name";
-        console.log("建物名")
-        break;
-      default:
-        break;
-    }
-
-    console.log("fetch処理に移る")
-    console.log(this.state.search_query)
-    console.log("in if")
-    fetch(`https://lunchtime-db.herokuapp.com/nmdp/${search_by}?${this.state.search_query}`, {
+  // データが見つかった場合は、親にデータを伝える
+  // 見つからなかった場合は、エラーであることを伝える
+  async handelSearchPathChange(value) {
+    this.setState({ search_path: value });
+    this.props.onDone(false);
+    this.props.onError(""); // error文を初期化
+    this.props.onCondition("データを取得中");
+    const search_path = await value
+    console.log("dataのfetch処理を開始")
+    console.log(search_path)
+    fetch(`https://lunchtime-db.herokuapp.com/nmdp/${search_path}`, { //  `http://localhost:3018/nmdp/${search_path}`
       mode: 'cors',
       credentials: 'include',
       headers: {
@@ -105,75 +47,32 @@ class NomadSearch extends React.Component {
       .then(res => res.json())
       .then(
         (result) => {
-          this.handleSearchResultsChange(result);
+          console.log("データのfetchが完了")
+          this.props.onDataChange(result);
+          this.props.onCondition(""); // 成功したらエラーをクリア
+          this.props.onDone(true); // PageSearchにDataの取得が完了したことを伝える
           this.setState({
-            data: result,
-            loading: false,
+            results: result,
           });
         },
         (error) => {
-          this.setState({
-            data: error,
-            loading: false,
-          });
+          console.log("データのfetchが失敗")
+          this.props.onCondition("");
+          this.props.onError(error);
+          this.props.onDone(false); // デフォルトfalseだが、万が一にもここがtrueとなってしまうと困るので、明示
         }
       )
-  }
 
-  async handelSearchQueryChange(value) {
-    this.setState({ search_query: value });
-    const search_query = await value
-    console.log("fetch処理に移る")
-    console.log(this.state.search_query)
-    console.log("in if")
-    fetch(`https://lunchtime-db.herokuapp.com/nmdp/station?id=${this.state.search_query}`, {
-      mode: 'cors',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      }
-    })
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.handleSearchResultsChange(result);
-          this.setState({
-            data: result,
-            loading: false,
-          });
-        },
-        (error) => {
-          this.setState({
-            data: error,
-            loading: false,
-          });
-        }
-      )
-    
-  }
-
-  handleChainChange(value) {
-    this.setState({
-      selected_chain: value
-    });
-    this.props.onChainChange(value);
   }
 
   render() {
     return (
-      <div className={css(styles.container)}>
-        <div className={css(styles.contents)}>
-          <NomadDrillDown {...this.state} onAreaChange={this.handleAreaChange} onChainChange={this.handleChainChange} onSearchQueryChange={this.handelSearchQueryChange} />
-          <div className={css(styles.searchButtonWrap)}>
-            <Link to='/results'>
-              <button className={css(styles.searchButton)}>検索する</button>
-            </Link>
-          </div>
-        </div>
+      <div>探す場所を選んでね！
+        <DrillButtons onClick={this.handleSelectDrillButton} error={this.props.error} />
+        <GenerateSearchPath onChange={this.handelSearchPathChange} selectedDrillButton={this.state.selected_drill_button} />
       </div>
     );
   }
 }
 
-export default NomadSearch;
+export default DrillDown;

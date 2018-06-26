@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 import CardsDetail from './CardsDetail';
-import present_location from './present_location'
+import ScrollToTopOnMount from '../utils/ScrollToTopOnMount';
 
 const styles = StyleSheet.create({
   container: {
@@ -9,8 +9,7 @@ const styles = StyleSheet.create({
   },
 });
 
-// data と chains を props にもつ
-class SearchResults extends React.Component {
+class PageSearchResults extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,33 +19,35 @@ class SearchResults extends React.Component {
 
   componentDidMount() {
     const data_all = this.props.data
-    const chains = this.props.chains
+    const chains = this.props.narrows
     console.log(data_all)
     console.log(chains)
+    // TODO: 以下の処理を一つにまとめる
     let results = []
     chains.map((chain_id) => {
       console.log(`chain : ${chain_id} の処理を開始`)
       console.log(Number(chain_id))
       const filtered_data = data_all.filter((value) => {
         return value.chain_id == Number(chain_id)
-      });
+      })
       console.log(filtered_data)
       results = results.concat(filtered_data);
     });
-    if (chains == "") {
+    if (chains.length === 0) {
       results = data_all
     }
-    console.log(results); 
-    this.setState({results: results});
+    console.log(results);
+    this.setState({ results: results });
   }
 
   render() {
     return (
       <div className={css(styles.container)}>
+        <ScrollToTopOnMount />
         <CardsDetail data={this.state.results} my_location={this.props.my_location} />
       </div >
     );
   }
 }
 
-export default SearchResults;
+export default PageSearchResults;

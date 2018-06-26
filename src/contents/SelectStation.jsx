@@ -1,29 +1,46 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
-import SearchBox from './SearchBox';
+import SearchStationName from './SearchStationName';
+import StationSearchResults from './StationSearchResults';
 
 const styles = StyleSheet.create({
-  wrap: {
-    marginBottom: '1em',
-  },
-  buttonWrap: {
-    textAlign: 'center',
-    marginTop: '.7em',
-  },
-  button: {
-    background: 'white',
-  },
 });
 
-const NarrowStation = (props) => {
-  return (
-    <div className={css(styles.wrap)}>
-      <SearchBox label="駅名検索" value={props.station_name} {...props} />
-      <div className={css(styles.buttonWrap)}>
-        <button className={css(styles.button)} onClick={props.onClick}>検索を実行</button>
+// onSelected をpropsで持ち、それで親にselectされたstationのidを伝播
+class SelectStation extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleDataChange = this.handleDataChange.bind(this);
+    this.handleSelected = this.handleSelected.bind(this);
+    this.state = {
+      data: [],
+      selected_station_id: '',
+      selected_station_name: '',
+    };
+  }
+
+  handleDataChange(value) {
+    // SearchStationNameでの駅名検索結果をdataに代入
+    this.setState({data: value});
+  }
+
+  handleSelected(id, name) {
+    // stateへの代入と、親へのselectされたstation id の伝播
+    this.setState({
+      selected_station_id: id,
+      selected_station_name: name,
+    });
+    this.props.onSelected(id);
+  }
+
+  render() {
+    return (
+      <div className={css(styles.wrap)}>
+        <SearchStationName onDataChange={this.handleDataChange} />
+        <StationSearchResults data={this.state.data} onClick={this.handleSelected} />
       </div>
-    </div>
-  );
+    );
+  }
 }
 
-export default NarrowStation;
+export default SelectStation;

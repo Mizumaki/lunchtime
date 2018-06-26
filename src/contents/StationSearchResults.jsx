@@ -21,34 +21,22 @@ const styles = StyleSheet.create({
   },
 });
 
-class StationsResults extends React.Component {
-  constructor(props) {
-    super(props);
-    this.clickStation = this.clickStation.bind(this);
-  }
-
-  clickStation(e) {
-    this.props.onClick(e.currentTarget.value);
-    console.log(e.currentTarget.value);
-    console.log("its me")
-  }
-
-  render() {
-    //const clickStation = (e) => { this.props.onClick(e.target.value); console.log(e.target.value); console.log("its me")}
-    const results = this.props.stations.map((station) => {
-      return (
-        <button className={css(styles.station)} key={station.id} value={station.id} onClick={this.clickStation}>
-          <span className={css(styles.name)}>{station.name}</span>
-          <span className={css(styles.company)}>{station.company_name}</span>
-        </button>
-      )
-    })
+const StationSearchResults = (props) => {
+  const clickStation = (e) => { props.onClick(e.currentTarget.id, e.currentTarget.name); console.log(e.currentTarget.id, e.currentTarget.name); console.log("its me"); }
+  const results = props.data.map((station) => {
     return (
-      <div className={css(styles.wrap)}>
-        {results}
-      </div>
-    );
-  }
+      <button className={css(styles.station)} key={station.id} id={station.id} name={station.name} onClick={clickStation}>
+        <span className={css(styles.name)}>{station.name}</span>
+        <span className={css(styles.company)}>{station.company_name}</span>
+      </button>
+    )
+  })
+
+  return (
+    <div className={css(styles.wrap)}>
+      {results}
+    </div>
+  );
 }
 
-export default StationsResults;
+export default StationSearchResults;

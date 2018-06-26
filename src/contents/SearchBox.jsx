@@ -28,12 +28,9 @@ const styles = StyleSheet.create({
 
 });
 
-// onChange と onFocus と value が props として必要
-
+// onChange と onFocus と onBlur と value が props として必要
 const SearchBox = (props) => {
   const handleChange = (e) => { props.onChange(e.target.value); }
-  const handleFocus = () => {}
-  const handleBlur = () => {}
   return (
     <div>
       <label for="searchBoxInSearch">{props.label}</label>
