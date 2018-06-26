@@ -16,7 +16,7 @@ class Narrows extends React.Component {
   render() {
     return (
       <div className={css(styles.wrap)}>
-        <NarrowChain />
+        <NarrowChain onChange={this.props.onNarrowsChange} />
         <NarrowType /> {/* 今のところnull */}
       </div>
     );

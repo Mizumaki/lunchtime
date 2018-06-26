@@ -27,7 +27,7 @@ class NarrowChain extends React.Component {
         <div className={css(styles.moreButtonPosition)} >
           <ButtonMore />
         </div>
-        <CircleButtons use="chain_main" checkBox={true} {...this.props} />
+        <CircleButtons use="chain_main" checkBox={true} onChange={this.props.onChange} {...this.props} />
       </div>
     );
   }

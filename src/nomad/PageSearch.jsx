@@ -72,7 +72,7 @@ class PageSearch extends React.Component {
 
   // 現在の状態の変更
   handleCondition(value) {
-    this.setState({condition: value});
+    this.setState({ condition: value });
   }
 
   // エラー文の表示
@@ -81,10 +81,10 @@ class PageSearch extends React.Component {
     // TODO: data_fetch_errorの種類によりerror_stringのstateを変える
     switch (value) {
       case "":
-        this.setState({ error_string: value});
+        this.setState({ error_string: value });
         break;
       default:
-        this.setState({ error_string: ""});
+        this.setState({ error_string: "" });
         break;
     }
   }
@@ -97,6 +97,7 @@ class PageSearch extends React.Component {
             <TextSearch /> {/* 今のところ null */}
             <DrillDown onDataChange={this.props.onDataChange} onDone={this.handleDrillDownSelectDone} onCondition={this.handleCondition} onError={this.handleError} error={this.state.data_fetch_error} />
             <Narrows onNarrowsChange={this.props.onNarrowsChange} />
+            {/* 
             <div className={css(styles.optionButtonsWrap)}>
               <button className={css(styles.optionButton)}>
                 まだ決めてない
@@ -105,6 +106,7 @@ class PageSearch extends React.Component {
                 さらに見る
             </button>
             </div>
+          */}
           </div>
           <div className={css(styles.searchButtonWrap)}>
             <Link to='/results'>
