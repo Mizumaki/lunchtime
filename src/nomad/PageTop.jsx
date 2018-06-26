@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
+import { Link } from 'react-router-dom';
 
 const styles = StyleSheet.create({
   toSearch: {
@@ -21,7 +22,9 @@ const PageTop = (props) => {
   return (
     <div className={css(styles.toSearch)}>
       <p>近くのノマドプレイスを<br />30秒で探そう！</p>
-      <button type='button' className={css(styles.searchButton)}>今すぐ検索！</button>
+      <Link to='/search'>
+        <button type='button' className={css(styles.searchButton)}>今すぐ検索！</button>
+      </Link>
     </div>
   );
 }
