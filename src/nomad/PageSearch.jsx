@@ -9,6 +9,7 @@ import SearchButton from '../contents/SearchButton';
 const styles = StyleSheet.create({
   container: {
     padding: '0 .3rem',
+    marginBottom: '5rem',
   },
 
   contents: {

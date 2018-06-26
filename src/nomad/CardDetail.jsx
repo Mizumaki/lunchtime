@@ -111,7 +111,7 @@ class CardDetail extends React.Component {
     const address = nmdp.address
     const phone_number = nmdp.phone_number
 
-    const resDetail = showDetail ? (<NomadInfo address={address} phone_number={phone_number} location={this.props.location} />) : null;
+    const resDetail = showDetail ? (<NomadInfo address={address} phone_number={phone_number} location={this.props.location} name={`${chain_name}${name}`} />) : null;
     let has_wifi = "不明"
     switch (nmdp.has_wifi) {
       case true:

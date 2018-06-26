@@ -48,10 +48,27 @@ const styles = StyleSheet.create({
   resImages: {},
   resReviews: {},
   resAccess: {},
+  mapToApps: {
+    padding: '2rem 0',
+    display: 'flex',
+    justifyContent: 'space-around',
+  },
+  mapUrl: {
+    width: '45%',
+    padding: '.4em',
+    background: 'white',
+    borderRadius: '1.3rem',
+    color: 'dimgrey',
+    fontSize: '1.5rem',
+    textAlign: 'center',
+  },
   resBasicInfo: {},
 });
 
-const RestaurantInfo = (props) => {
+const NomadInfo = (props) => {
+  const map_query = `?q=${props.name}&z=20`
+  const ios_map_url = `http://maps.apple.com/maps${map_query}`
+  const android_map_url = `http://maps.google.com/maps${map_query}`
   return (
     <div>
       {/* <div className={css(styles.resMenu)}>
@@ -86,6 +103,10 @@ const RestaurantInfo = (props) => {
           mapElement={<div style={{ height: `100%` }} />}
           location={props.location}
         />
+        <div className={css(styles.mapToApps)}>
+          <div className={css(styles.mapUrl)}><a href={ios_map_url}>iOS用マップ ＞</a></div>
+          <div className={css(styles.mapUrl)}><a href={android_map_url}>Googleマップ ＞</a></div>
+        </div>
       </div>
       <div className={css(styles.resBasicInfo)}>
         <h3>基本情報</h3>
@@ -96,4 +117,4 @@ const RestaurantInfo = (props) => {
   );
 }
 
-export default RestaurantInfo;
+export default NomadInfo;
