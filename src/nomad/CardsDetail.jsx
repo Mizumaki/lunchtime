@@ -12,14 +12,14 @@ const CardsDetail = (props) => {
     let chain_name = ""
     switch (nmdp.chain_id) {
       case 1:
-      chain_name = "スターバックス"
-      break;
+        chain_name = "スターバックス"
+        break;
       case 2:
-      chain_name = "ドトール"
+        chain_name = "ドトール"
       default:
-      break;  
+        break;
     }
-    
+
     const point = nmdp.location
     const reg = /\d+\.\d+/g
     const lonlat = point.match(reg);
@@ -61,9 +61,11 @@ const CardsDetail = (props) => {
       const result = time.match(reg_time);
       return result[1];
     }
-    const weekday = { start: cutting(nmdp.business_hours[1].start_time), end: cutting(nmdp.business_hours[1].end_time)}
-    const saturday = nmdp.business_hours[6] ? { start: cutting(nmdp.business_hours[6].start_time), end: cutting(nmdp.business_hours[6].end_time)}:{};
-    const sunday = nmdp.business_hours[0] ? {start: cutting(nmdp.business_hours[0].start_time), end: cutting(nmdp.business_hours[0].end_time) }:{};
+
+    // TODO : Fix .start_time で判断
+    const weekday = { start: cutting(nmdp.business_hours[1].start_time), end: cutting(nmdp.business_hours[1].end_time) }
+    const saturday = nmdp.business_hours[6].start_time !== null ? { start: cutting(nmdp.business_hours[6].start_time), end: cutting(nmdp.business_hours[6].end_time) } : {};
+    const sunday = nmdp.business_hours[0].start_time !== null ? { start: cutting(nmdp.business_hours[0].start_time), end: cutting(nmdp.business_hours[0].end_time) } : {};
 
     return (<CardDetail nmdp={nmdp} chain_name={chain_name} distance={`${distance}`} day_off={day_off} weekday={weekday} saturday={saturday} sunday={sunday} location={nmdp_location} key={nmdp.id} />)
   })) : (<p>検索結果は0件です。</p>)
