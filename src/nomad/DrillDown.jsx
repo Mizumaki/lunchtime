@@ -1,28 +1,17 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
-import { strongBrown } from '../styles/colors';
-import searchIcon from '../icon/search.svg';
+import ButtonMore from '../utils/ButtonMore';
 import DrillButtons from './DrillButtons';
 import GenerateSearchPath from './GenerateSearchPath';
 
 const styles = StyleSheet.create({
-  topStringDiv: {
-    marginBottom: '1.5rem', 
-    textAlign: 'center',
-    color: strongBrown,
-    fontSize: '1.4em',
+  wrap: {
+    position: 'relative',
   },
-
-  topString: {
-    verticalAlign: 'middle',
-    ':before' : {
-      content: "''",
-      display: 'inline-block',
-      backgroundImage: `url(${searchIcon})`,
-      backgroundSize: '1.4em',
-      width: '1.4em',
-      height: '1.4em',
-    },
+  moreButtonPosition: {
+    position: 'absolute',
+    top: '.2rem',
+    left: '-2.8rem',
   },
 });
 
@@ -86,9 +75,12 @@ class DrillDown extends React.Component {
   }
 
   render() {
-    const string = (<div className={css(styles.topStringDiv)}><p className={css(styles.topString)}>検索</p></div>)
     return (
-      <div>{string}
+      <div className={css(styles.wrap)}>
+        <p>STEP1 : 場所を絞り込む</p>
+        <div className={css(styles.moreButtonPosition)} >
+          <ButtonMore />
+        </div>
         <DrillButtons onClick={this.handleSelectDrillButton} error={this.props.error} />
         <GenerateSearchPath onChange={this.handelSearchPathChange} selectedDrillButton={this.state.selected_drill_button} onMyLocationChange={this.props.onMyLocationChange} />
       </div>

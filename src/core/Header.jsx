@@ -1,39 +1,53 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 import { darkBrown, lightBrown } from '../styles/colors';
-import search from '../icon/search.svg';
+import { menu_transform } from '../styles/css';
 import coffee from '../icon/coffee.svg';
 import { Link } from 'react-router-dom';
+import MenuButton from './MenuButton';
+import IconSearch from '../icon/IconSearch';
 
 const styles = StyleSheet.create({
   wrap: {
-    //minHeight: '5rem',
-    //height: '11%',
-    //maxHeight: '7rem',
+    width: '100%',
     height: '5rem',
-    paddingTop: '1rem',
     background: 'white',
-    color: darkBrown,
+    display: 'flex',
+    alignItems: 'center', // 中心にcontentsを持ってくる
+    position: 'fixed',
+    top: '0',
+    left: '0',
+    right: '0',
+    zIndex: '100',
   },
   
   contents: {
+    width: '100%',
     position: 'relative',
+    color: darkBrown,
   },
 
   siteName: {
     position: 'relative',
-    left: '1rem',
+    left: '1rem', // 疑似要素が入るため中心より少し左にずらす
     textAlign: 'center',
+    fontSize: '2.1rem', // 疑似要素や他のアイコンとの関係上、可変では困る
     fontWeight: 'bold',
-    fontSize: '1.3em',
     '::after': {
       content: "''",
       display: 'inline-block',
       backgroundImage: `url(${coffee})`,
       width: '1em',
       height: '1em',
-      margin: '-2px .4rem'
+      margin: '-1px .4rem'
     },
+  },
+
+  menuButton: {
+    position: 'absolute',
+    top: '-.4rem',
+    left: '1.7rem',
+    width: '15%', // リンクの範囲を広く
   },
 
   searchIcon: {
@@ -41,25 +55,34 @@ const styles = StyleSheet.create({
     top: '.4rem',
     right: '1.7rem',
     width: '15%', // リンクの範囲を広く
-    textAlign: 'right',
+    textAlign: 'right', // widthを広くした分、右寄せ
+  },
+
+  slide_menu_shown: {
+    ...menu_transform.open
+  },
+
+  slide_menu_not_shown: {
+    ...menu_transform.close
   },
 });
 
 
 const Header = (props) => {
-  const searchSvg = (<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill={lightBrown} />
-    <path d="M0 0h24v24H0z" fill="none" />
-  </svg>)
   return (
     <div className={css(styles.wrap)}>
       <div className={css(styles.contents)}>
-      <Link to='/'>
-        <p className={css(styles.siteName)}>NOMADTIME</p>
-        </Link>
-        <Link to='/search' className={css(styles.searchIcon)}>
-        {searchSvg}
-        </Link>
+        <div className={css(styles.menuButton)}>
+          <MenuButton {...props} />
+        </div>
+        <div className={props.is_menu_shown ? (css(styles.slide_menu_shown)) : (css(styles.slide_menu_not_shown))}>
+          <Link to='/'>
+            <p className={css(styles.siteName)}>NOMADTIME</p>
+          </Link>
+          <Link to='/search' className={css(styles.searchIcon)}>
+            <IconSearch color={lightBrown} size="24" />
+          </Link>
+        </div>
       </div>
     </div>
   );

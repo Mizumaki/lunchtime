@@ -1,17 +1,8 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
-import ButtonMore from '../utils/ButtonMore';
 import RadioCircleButtons from '../utils/RadioCircleButtons';
 
 const styles = StyleSheet.create({
-  relative: {
-    position: 'relative',
-  },
-  moreButtonPosition: {
-    position: 'absolute',
-    top: '.2rem',
-    left: '-2.8rem',
-  },
   error: {
     fontSize: '1.2rem',
     background: 'white',
@@ -44,11 +35,7 @@ class DrillButtons extends React.Component {
       </div>
     ) : (null);
     return (
-      <div className={css(styles.relative)}>
-        <p>STEP1 : 場所を絞り込む</p>
-        <div className={css(styles.moreButtonPosition)} >
-          <ButtonMore />
-        </div>
+      <div>
         <RadioCircleButtons buttons={buttons} onClick={this.props.onClick} error={this.props.error} />
         {error}
       </div>

@@ -4,11 +4,11 @@ import { darkBrown} from '../styles/colors';
 import { Link } from 'react-router-dom';
 
 const styles = StyleSheet.create({
-  toSearch: {
-    color: darkBrown,
+  wrap: {
+    textAlign: 'center',
     fontSize: '2.4rem',
     fontWeight: 'bold',
-    textAlign: 'center',
+    color: darkBrown,
   },
   
   searchButton: {
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
 
 const PageTop = (props) => {
   return (
-    <div className={css(styles.toSearch)}>
+    <div className={css(styles.wrap)}>
       <p>近くのノマドプレイスを<br />30秒で探そう！</p>
       <Link to='/search'>
         <button type='button' className={css(styles.searchButton)}>今すぐ検索！</button>

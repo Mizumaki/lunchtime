@@ -9,8 +9,7 @@ const styles = StyleSheet.create({
   },
 
   headerEqual: {
-    height: '5rem',
-    background: '#FFFFFF'
+    height: '5rem', // Header の height に依存
   },
 
   ul: {

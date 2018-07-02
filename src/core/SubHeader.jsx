@@ -3,16 +3,12 @@ import { StyleSheet, css } from 'aphrodite';
 import { Link } from 'react-router-dom';
 
 const styles = StyleSheet.create({
-  subHeaderMenu: {
-    minHeight: '3.5rem',
-    height: '6.1 %',
-    maxHeight: '4rem',
-    display: 'flex',
+  wrap: {
+    display:  'flex',
     justifyContent: 'space-around',
     alignItems: 'center',
-    color: 'white',
     fontSize: '1.8rem',
-    margin: '.5rem 0 1rem 0',
+    padding: '1.5rem 0',
   },
 
   active: {
@@ -23,9 +19,20 @@ const styles = StyleSheet.create({
 });
 
 const SubHeader = (props) => {
+  const path = window.location.pathname
+  const condition = (() => {
+    switch (true) {
+      case /\/search*./.test(path):
+        return "絞り込み検索"
+      case /\/results*./.test(path):
+        return "検索結果"
+      default:
+        return null
+    }
+  })();
   return (
-    <div className={css(styles.subHeaderMenu)}>
-      <div className={css(styles.active)}></div>
+    <div className={css(styles.wrap)}>
+      <div className={css(styles.active)}>{condition}</div>
     </div>
   );
 }

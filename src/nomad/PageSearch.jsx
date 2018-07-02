@@ -1,5 +1,7 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
+import { strongBrown, darkBrown } from '../styles/colors';
+import searchIcon from '../icon/search.svg';
 import { Link } from 'react-router-dom';
 import TextSearch from './TextSearch';
 import DrillDown from './DrillDown';
@@ -9,20 +11,40 @@ import SearchButton from '../contents/SearchButton';
 const styles = StyleSheet.create({
   container: {
     maxWidth: '40rem',
-    margin: '0 auto',
-    padding: '0 .3rem',
+    margin: '0 auto', // maxWidthより大きくなった際に、中央寄せ
+    padding: '0 1rem',
     marginBottom: '5rem',
   },
 
   contents: {
-    background: '#FFFFFF',
     borderRadius: '4rem',
     padding: '1rem 2.5rem',
+    background: '#FFFFFF',
     fontWeight: 'bold',
+  },
+
+  topStringDiv: {
+    marginBottom: '.6rem',
+    textAlign: 'center',
+    color: strongBrown,
+    fontSize: '1.4em',
+  },
+
+  topString: {
+    verticalAlign: 'middle', // 疑似要素と文字列の高さを揃える
+    ':before': {
+      content: "''",
+      display: 'inline-block',
+      backgroundImage: `url(${searchIcon})`,
+      backgroundSize: '1.4em',
+      width: '1.4em',
+      height: '1.4em',
+    },
   },
 
   searchWrap: {
     padding: '.5rem 1rem',
+    color: darkBrown,
   },
 
   searchButtonWrap: {
@@ -96,6 +118,9 @@ class PageSearch extends React.Component {
     return (
       <div className={css(styles.container)}>
         <div className={css(styles.contents)}>
+          <div className={css(styles.topStringDiv)}>
+            <p className={css(styles.topString)}>検索</p>
+          </div>
           <div className={css(styles.searchWrap)}>
             <TextSearch /> {/* 今のところ null */}
             <DrillDown onDataChange={this.props.onDataChange} onDone={this.handleDrillDownSelectDone} onCondition={this.handleCondition} onError={this.handleError} error={this.state.data_fetch_error} onMyLocationChange={this.props.onMyLocationChange} />

@@ -1,44 +1,36 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 import SlideMenuContents from './SlideMenuContents';
+import {menu_transform} from '../styles/css';
 
 const styles = StyleSheet.create({
   wrap: {
     position: 'fixed', // これにより、要素のサイズを0に
     top: '0',
     left: '0',
+    width: '200px',
+    height: '100%',
+    height: '100vh',
     zIndex: '1200',
     marginLeft: '-200px', // 初期では表示しないため、左に-200pxの場所に設置
-    width: '200px',
-    height: '100vh',
     background: '#FFFFFF'
   },
 
   show: {
-    transform: 'translate(200px, 0)', // 初期では左に -200px の場所に存在するdivを、右に200px移動する
-    transitionDuration: '300ms',
+   ...menu_transform.open
   },
 
   not_show: {
-    transform: 'translate(0, 0)',
-    transitionDuration: '500ms',
+    ...menu_transform.close
   },
 });
 
-const AnytimeMenu = (props) => {
-  const contents = props.is_shown ?
-    (
-      <div className={css(styles.wrap, styles.show)}>
-        <SlideMenuContents onClick={props.onClick} />
-      </div>
-    ) : (
-      <div className={css(styles.wrap, styles.not_show)}>
-        <SlideMenuContents />
-      </div>
-    );
+const SlideMenu = (props) => {
   return (
-    contents
+    <div className={props.is_shown ? (css(styles.wrap, styles.show)) : (css(styles.wrap, styles.not_show))}>
+      <SlideMenuContents onClick={props.onClick} />
+    </div>
   );
 }
 
-export default AnytimeMenu;
+export default SlideMenu;

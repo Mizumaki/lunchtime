@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
-import { shadowZ3 } from '../styles/appCss';
+import { shadowZ3 } from '../styles/css';
 import NomadInfo from './NomadInfo';
 import iconShow from '../images/arrow_down.svg';
 import iconClose from '../images/arrow_up.svg';

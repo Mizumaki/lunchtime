@@ -10,8 +10,6 @@ const styles = StyleSheet.create({
   },
   menuIcon: {
     position: 'absolute',
-    top: '.5rem',
-    left: '1.5rem',
     zIndex: '1201', // SlideMenuのzIndexが1200のため
   },
 });

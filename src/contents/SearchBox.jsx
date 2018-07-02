@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
-import searchIcon from '../images/search.svg';
+import IconSearch from '../icon/IconSearch';
 
 const styles = StyleSheet.create({
   searchBox: {
@@ -11,40 +11,19 @@ const styles = StyleSheet.create({
     padding: '0px 0.5rem',
     margin: '0px auto',
   },
-  iconSearch: {
-    display: 'inline-block',
-    verticalAlign: 'text-top',
-  },
-
-  searchBox: {
-    background: 'white',
-    height: '3rem',
-    width: '28rem',
-    verticalAlign: 'middle',
-    padding: '0 .5rem',
-    margin: '0 auto',
-  },
 
   iconSearch: {
     display: 'inline-block',
     verticalAlign: 'text-top',
   },
 
-  searchField: {
-    width: '24rem',
-    /* 本当はできる限り広く取りたいが、iconとの関係上計算しなければならない */
-    height: '100%',
-    background: 'white',
-    margin: '0 auto',
-    padding: '0 .5em',
-  },
   searchField: {
     width: '24rem',
     height: '100%',
     margin: '0px auto',
     padding: '0px 0.5em',
-    border: `1px solid black`
-  }
+    border: `1px solid black`,
+  },
 });
 
 // onChange と onFocus と onBlur と value が props として必要
@@ -56,7 +35,7 @@ const SearchBox = (props) => {
       <br />
       <div className={css(styles.searchBox)}>
         <div className={css(styles.iconSearch)}>
-          <img src={searchIcon} alt="" />
+          <IconSearch color="black" size="24" />
         </div>
         <input type="text" className={css(styles.searchField)} id="searchBoxInSearch" value={props.value} onChange={handleChange} onFocus={props.onFocus} onBlur={props.onBlur} >
         </input>
