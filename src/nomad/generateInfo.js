@@ -55,7 +55,7 @@ export default class FormatInfo {
     const distance = this.my_location.longitude !== "" && this.my_location.latitude !== "" ?
       (geolib.getDistance(this.my_location, nmdp_location)) : ("");
     
-    return distance
+    return `${distance}m`
   }
 
   getDayOff() {
