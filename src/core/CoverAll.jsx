@@ -20,12 +20,14 @@ const styles = StyleSheet.create({
     left: '0',
     opacity: '1',
     pointerEvents: 'auto',
-    background: 'rgba(0, 0, 0, 0.54)',
+    //background: 'rgba(0, 0, 0, 0.54)',
   },
 });
 
 const CoverAll = (props) => {
-  const div = props.is_shown ? (<div className={css(styles.wrap, styles.shown)} onClick={props.onClick} ></div>) : (<div className={css(styles.wrap, styles.notShown)}></div>);
+  const div = props.is_shown ?
+    (<div className={css(styles.wrap, styles.shown)} onClick={props.onClick} ></div>) :
+    (<div className={css(styles.wrap, styles.notShown)}></div>);
   return(
     div
   );

@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
+import {strongBrown} from '../styles/colors';
 
 let styles = StyleSheet.create({
   checkBoxWrap: {
@@ -18,6 +19,7 @@ let styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     background: 'white',
+    border: `1px solid ${strongBrown}`,
     borderRadius: '5rem',
     width: '100%',
     height: '100%',

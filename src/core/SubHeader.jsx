@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     color: 'white',
     fontSize: '1.8rem',
-    margin: '1.5rem 0 1rem 0',
+    margin: '.5rem 0 1rem 0',
   },
 
   active: {
@@ -25,12 +25,7 @@ const styles = StyleSheet.create({
 const SubHeader = (props) => {
   return (
     <div className={css(styles.subHeaderMenu)}>
-      <div className={css(styles.active)}>近い順</div>
-      {/*   
-      <div>近い順</div>
-      <div className={css(styles.active)}>人気順</div>
-      <div>新着順</div>
-    */}
+      <div className={css(styles.active)}></div>
     </div>
   );
 }

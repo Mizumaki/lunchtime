@@ -1,9 +1,29 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
+import { strongBrown } from '../styles/colors';
+import searchIcon from '../icon/search.svg';
 import DrillButtons from './DrillButtons';
 import GenerateSearchPath from './GenerateSearchPath';
 
 const styles = StyleSheet.create({
+  topStringDiv: {
+    marginBottom: '1.5rem', 
+    textAlign: 'center',
+    color: strongBrown,
+    fontSize: '1.4em',
+  },
+
+  topString: {
+    verticalAlign: 'middle',
+    ':before' : {
+      content: "''",
+      display: 'inline-block',
+      backgroundImage: `url(${searchIcon})`,
+      backgroundSize: '1.4em',
+      width: '1.4em',
+      height: '1.4em',
+    },
+  },
 });
 
 // onDataChange, onDone, onError, error をpropsで持つ
@@ -66,8 +86,9 @@ class DrillDown extends React.Component {
   }
 
   render() {
+    const string = (<div className={css(styles.topStringDiv)}><p className={css(styles.topString)}>検索</p></div>)
     return (
-      <div>探す場所を選んでね！
+      <div>{string}
         <DrillButtons onClick={this.handleSelectDrillButton} error={this.props.error} />
         <GenerateSearchPath onChange={this.handelSearchPathChange} selectedDrillButton={this.state.selected_drill_button} onMyLocationChange={this.props.onMyLocationChange} />
       </div>

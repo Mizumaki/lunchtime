@@ -8,12 +8,14 @@ import SearchButton from '../contents/SearchButton';
 
 const styles = StyleSheet.create({
   container: {
+    maxWidth: '40rem',
+    margin: '0 auto',
     padding: '0 .3rem',
     marginBottom: '5rem',
   },
 
   contents: {
-    background: '#E5E5E5',
+    background: '#FFFFFF',
     borderRadius: '4rem',
     padding: '1rem 2.5rem',
     fontWeight: 'bold',

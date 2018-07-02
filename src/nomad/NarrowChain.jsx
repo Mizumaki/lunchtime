@@ -23,7 +23,7 @@ class NarrowChain extends React.Component {
   render() {
     return (
       <div className={css(styles.relative)}>
-        - 任意：チェーン店名で絞り込む
+        <p>STEP2 : チェーンで絞り込む</p>
         <div className={css(styles.moreButtonPosition)} >
           <ButtonMore />
         </div>

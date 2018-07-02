@@ -1,11 +1,13 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
+import {normalBrown} from '../styles/colors';
 
 const styles = StyleSheet.create({
   wrap: {
-    background: 'white',
+    background: normalBrown,
     width: '100%',
     padding: '1rem',
+    color: '#FFFFFF',
 },
   searchButton: {
     width: '100%',

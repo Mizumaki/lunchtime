@@ -1,6 +1,5 @@
 body {
-  background: white url(../src/images/wood-texture.jpg) no-repeat fixed bottom;
-  background-size: cover;
+  background: #FAF4F0; /* hsb(23,4,98) */
 }
 
 .food-image {

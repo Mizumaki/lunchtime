@@ -1,15 +1,18 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
+import { darkBrown} from '../styles/colors';
 import { Link } from 'react-router-dom';
 
 const styles = StyleSheet.create({
   toSearch: {
-    color: 'white',
+    color: darkBrown,
     fontSize: '2.4rem',
+    fontWeight: 'bold',
     textAlign: 'center',
   },
-
+  
   searchButton: {
+    marginTop: '1em',
     background: 'white',
     opacity: '0.5',
     padding: '0 1rem',

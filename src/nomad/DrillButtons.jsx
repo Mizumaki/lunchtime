@@ -45,7 +45,7 @@ class DrillButtons extends React.Component {
     ) : (null);
     return (
       <div className={css(styles.relative)}>
-        - 必須：エリア・駅名・建物名
+        <p>STEP1 : 場所を絞り込む</p>
         <div className={css(styles.moreButtonPosition)} >
           <ButtonMore />
         </div>

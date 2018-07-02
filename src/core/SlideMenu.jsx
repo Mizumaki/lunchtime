@@ -11,32 +11,33 @@ const styles = StyleSheet.create({
     marginLeft: '-200px', // 初期では表示しないため、左に-200pxの場所に設置
     width: '200px',
     height: '100vh',
-    background: 'sandybrown',
-    color: 'white',
+    background: '#FFFFFF'
   },
+
   show: {
     transform: 'translate(200px, 0)', // 初期では左に -200px の場所に存在するdivを、右に200px移動する
     transitionDuration: '300ms',
   },
+
   not_show: {
     transform: 'translate(0, 0)',
-    transitionDuration: '300ms',
-  }
+    transitionDuration: '500ms',
+  },
 });
 
 const AnytimeMenu = (props) => {
-  const menu = props.is_shown ?
+  const contents = props.is_shown ?
     (
       <div className={css(styles.wrap, styles.show)}>
-        <SlideMenuContents onClick={props.onClick}/>
-    </div>
+        <SlideMenuContents onClick={props.onClick} />
+      </div>
     ) : (
       <div className={css(styles.wrap, styles.not_show)}>
         <SlideMenuContents />
-    </div>
+      </div>
     );
   return (
-    menu
+    contents
   );
 }
 
