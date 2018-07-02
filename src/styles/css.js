@@ -1,3 +1,4 @@
+import * as Color from './colors';
 // Menu が開く、閉じるでのトランスフォーム
 export const menu_transform = {
   open: {
@@ -7,6 +8,20 @@ export const menu_transform = {
   close: {
     transform: 'translate(0, 0)',
     transitionDuration: '500ms',
+  }
+}
+
+// チェーンによるカラーリング
+export const chainCss = {
+  starbucks: {
+    background: Color.logoColor.starbucks,
+    color: '#FFFFFF',
+    fontWeight: '500',
+  },
+  doutor: {
+    background: Color.logoColor.doutor,
+    color: Color.Black.normal,
+    fontWeight: '600',
   }
 }
 
