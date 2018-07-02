@@ -52,10 +52,11 @@ export default class FormatInfo {
 
   getDistance() {
     const nmdp_location = this.getLocation();
-    const distance = this.my_location.longitude !== "" && this.my_location.latitude !== "" ?
+    const dis = this.my_location.longitude !== "" && this.my_location.latitude !== "" ?
       (geolib.getDistance(this.my_location, nmdp_location)) : ("");
+    const distance = dis !== null ? `${dis}m` : ""
     
-    return `${distance}m`
+    return distance
   }
 
   getDayOff() {
