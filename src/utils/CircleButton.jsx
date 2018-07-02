@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
-import {strongBrown} from '../styles/colors';
+import { Brown } from '../styles/colors';
 
 let styles = StyleSheet.create({
   checkBoxWrap: {
@@ -19,7 +19,7 @@ let styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     background: 'white',
-    border: `1px solid ${strongBrown}`,
+    border: `1px solid ${Brown.strong}`,
     borderRadius: '5rem',
     width: '100%',
     height: '100%',
@@ -46,7 +46,7 @@ class CircleButton extends React.Component {
     super(props);
     this.handleRadioButton = this.handleRadioButton.bind(this);
     this.handleCheckBox = this.handleCheckBox.bind(this);
-    this.state = {is_selected: false};
+    this.state = { is_selected: false };
   }
 
   handleRadioButton(e) {
@@ -64,7 +64,7 @@ class CircleButton extends React.Component {
   }
 
   render() {
-    const cssStyle = this.state.is_selected ? (css(styles.checkBoxSelected)):(css(styles.checkBox));
+    const cssStyle = this.state.is_selected ? (css(styles.checkBoxSelected)) : (css(styles.checkBox));
     const main = this.props.checkBox ?
       (
         <label className={cssStyle}>
@@ -80,7 +80,8 @@ class CircleButton extends React.Component {
       <div className={css(styles.checkBoxWrap)}>
         {main}
       </div>
-    );  }
+    );
+  }
 }
 
 export default CircleButton;

@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
-import { darkBrown } from '../styles/colors';
+import { Brown } from '../styles/colors';
 import { Link } from 'react-router-dom';
 
 const styles = StyleSheet.create({
   wrap: {
-    color: darkBrown,
+    color: Brown.dark,
   },
 
   headerEqual: {
@@ -13,14 +13,14 @@ const styles = StyleSheet.create({
   },
 
   ul: {
-    borderTop: `1px dotted ${darkBrown}`,
+    borderTop: `1px dotted ${Brown.dark}`,
     fontWeight: 'bold',
   },
 
   list: {
     width: '100%',
     padding: '1em',
-    borderBottom: `1px dotted ${darkBrown}`,
+    borderBottom: `1px dotted ${Brown.dark}`,
   }
 });
 

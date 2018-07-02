@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
-import { darkBrown, lightBrown } from '../styles/colors';
+import { Brown } from '../styles/colors';
 import { menu_transform } from '../styles/css';
 import coffee from '../icon/coffee.svg';
 import { Link } from 'react-router-dom';
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   contents: {
     width: '100%',
     position: 'relative',
-    color: darkBrown,
+    color: Brown.dark,
   },
 
   siteName: {
@@ -80,7 +80,7 @@ const Header = (props) => {
             <p className={css(styles.siteName)}>NOMADTIME</p>
           </Link>
           <Link to='/search' className={css(styles.searchIcon)}>
-            <IconSearch color={lightBrown} size="24" />
+            <IconSearch color={Brown.light} size="24" />
           </Link>
         </div>
       </div>

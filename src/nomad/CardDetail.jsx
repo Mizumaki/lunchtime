@@ -1,27 +1,25 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
-import { shadowZ3 } from '../styles/css';
+import {logoColor} from '../styles/colors';
+import { Shadow } from '../styles/css';
 import NomadInfo from './NomadInfo';
 import iconShow from '../images/arrow_down.svg';
 import iconClose from '../images/arrow_up.svg';
 
 const styles = StyleSheet.create({
   resContents: {
-    minWidth: '28rem', // TODO: ここらへんのサイズ指定は、一つ上のcard上で行いたい
-    width: '100%', // vwに直す
-    maxWidth: '34rem',
-    borderRadius: '5px',
     position: 'relative',
-    ...shadowZ3,
-    background: '#E5E5E5',
-    margin: '0 auto',
+    minWidth: '28rem', // これ以下にサイズがなる場合は伸縮させない
+    width: '100%',
     marginBottom: '2.6rem',
+    background: '#FFFFFF',
+    borderRadius: '5px',
+    ...Shadow.z1,
+    fontWeight: 'bold',
   },
 
   resHeader: {
-    fontWeight: 'bold',
-    width: '100%', // %で指定ということは、親がwidth持たなくなったら機能しない？　要確認
-    background: 'rgba(255, 255, 255, 0.5)',
+    width: '100%',
     borderRadius: 'inherit',
     borderBottomLeftRadius: '0',
     borderBottomRightRadius: '0',
@@ -38,6 +36,7 @@ const styles = StyleSheet.create({
   resName: {
     lineHeight: '1.3em',
     padding: '.5rem',
+    background: logoColor.starbucks,
   },
 
   resInfo: {
@@ -102,84 +101,46 @@ class CardDetail extends React.Component {
     const btnIcon = showDetail ?
       (<img src={iconClose} alt="" width="30px" />) : (<img src={iconShow} alt="" width="30px" />);
 
-
     const nmdp = this.props.nmdp
-    // データの型がbooleanなどもあるため、ここで関数に代入しておく
-    const name = nmdp.name
-    const chain_name = this.props.chain_name
-    const day_off = this.props.day_off
-    const address = nmdp.address
-    const phone_number = nmdp.phone_number
 
-    const resDetail = showDetail ? (<NomadInfo address={address} phone_number={phone_number} location={this.props.location} name={`${chain_name}${name}`} />) : null;
-    let has_wifi = "不明"
-    switch (nmdp.has_wifi) {
-      case true:
-        has_wifi = "あり";
-        break;
-      case null:
-        has_wifi = "データなし";
-        break;
-      case false:
-        has_wifi = "なし";
-        break;
-      default:
-        break;
-    }
+    const resDetail = showDetail ?
+      (<NomadInfo address={nmdp.address} phone_number={nmdp.phone_number} location={nmdp.location} name={`${nmdp.chain_name}${nmdp.name}`} />) : null;
+      
 
-    let has_charge = "不明"
-    switch (nmdp.has_charge) {
-      case true:
-        has_charge = "あり";
-        break;
-      case null:
-        has_charge = "不明";
-        break;
-      case false:
-        has_charge = "なし";
-        break;
-      default:
-        break;
-    }
 
-    const weekday = `${this.props.weekday.start}～${this.props.weekday.end}`
-    const saturday = `${this.props.saturday.start}～${this.props.saturday.end}`
-    const sunday = (this.props.day_off == "日") ?
-      "-" : `${this.props.sunday.start}～${this.props.sunday.end}`;
 
-    const bsh = (saturday == sunday) ?
-      (<div>月～金： {weekday}<br />土日： {saturday}</div>) : (<div>月～金： {weekday}<br />土： {saturday}<br />日： {sunday}</div>);
+    const bsh = (nmdp.bsh.saturday == nmdp.bsh.sunday) ?
+      (<div>月～金： {nmdp.bsh.weekday}<br />土日： {nmdp.bsh.saturday}</div>) : 
+      (<div>月～金： {nmdp.bsh.weekday}<br />土： {nmdp.bsh.saturday}<br />日： {nmdp.bsh.sunday}</div>);
     console.log(bsh)
 
     return (
       <div className={css(styles.resContents)}>
-        <div className={css(styles.resHeader)}>
-          <div onClick={() => this.handleClick()} className={css(styles.resButton)}>
-            <h2 className={css(styles.resName)}>
-              {chain_name}<br />
-              {name}
-            </h2>
-            <div className={css(styles.nomadInfo)}>
-              <div>
-                <div className={css(styles.nomadTimeDetail)}>
-                  <div>営業<br />時間</div>
-                  {bsh}
-                  <div>定休日：{day_off}</div>
-                </div>
-                <div className={css(styles.nomadApplianceDetail)}>
-                  <div>電源：</div>
-                  <div>{has_charge}</div>
-                  <div>無料Wifi：</div>
-                  <div>{has_wifi}</div>
-                </div>
+        <div className={css(styles.resButton)} onClick={() => this.handleClick()}>
+          <h2 className={css(styles.resName)}>
+            {nmdp.chain_name}<br />
+            {nmdp.name}
+          </h2>
+          <div className={css(styles.nomadInfo)}>
+            <div>
+              <div className={css(styles.nomadTimeDetail)}>
+                <div>営業<br />時間</div>
+                {bsh}
+                <div>定休日：{nmdp.day_off}</div>
               </div>
-              <div>{btnIcon}</div>
-            </div> {/* TODO: outline: none */}
+              <div className={css(styles.nomadApplianceDetail)}>
+                <div>電源：</div>
+                <div>{nmdp.has_charge}</div>
+                <div>無料Wifi：</div>
+                <div>{nmdp.has_wifi}</div>
+              </div>
+            </div>
+            <div>{btnIcon}</div>
           </div>
-          <div className={css(styles.resInfo)}>
-            <div className={css(styles.resDistance)}>{this.props.distance}</div>
-            {resDetail}
-          </div>
+        </div>
+        <div className={css(styles.resInfo)}>
+          <div className={css(styles.resDistance)}>{nmdp.distance}</div>
+          {resDetail}
         </div>
       </div>
     );

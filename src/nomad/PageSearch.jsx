@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
-import { strongBrown, darkBrown } from '../styles/colors';
+import { Brown } from '../styles/colors';
 import searchIcon from '../icon/search.svg';
 import { Link } from 'react-router-dom';
 import TextSearch from './TextSearch';
@@ -10,8 +10,6 @@ import SearchButton from '../contents/SearchButton';
 
 const styles = StyleSheet.create({
   container: {
-    maxWidth: '40rem',
-    margin: '0 auto', // maxWidthより大きくなった際に、中央寄せ
     padding: '0 1rem',
     marginBottom: '5rem',
   },
@@ -26,7 +24,7 @@ const styles = StyleSheet.create({
   topStringDiv: {
     marginBottom: '.6rem',
     textAlign: 'center',
-    color: strongBrown,
+    color: Brown.strong,
     fontSize: '1.4em',
   },
 
@@ -44,7 +42,7 @@ const styles = StyleSheet.create({
 
   searchWrap: {
     padding: '.5rem 1rem',
-    color: darkBrown,
+    color: Brown.dark,
   },
 
   searchButtonWrap: {

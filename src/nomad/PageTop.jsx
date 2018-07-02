@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
-import { darkBrown} from '../styles/colors';
+import { Brown} from '../styles/colors';
 import { Link } from 'react-router-dom';
 
 const styles = StyleSheet.create({
@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: '2.4rem',
     fontWeight: 'bold',
-    color: darkBrown,
+    color: Brown.dark,
   },
   
   searchButton: {
