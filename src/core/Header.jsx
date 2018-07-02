@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 import { Brown } from '../styles/colors';
+import {Shadow} from '../styles/css';
 import { menu_transform } from '../styles/css';
 import coffee from '../icon/coffee.svg';
 import { Link } from 'react-router-dom';
@@ -19,6 +20,7 @@ const styles = StyleSheet.create({
     left: '0',
     right: '0',
     zIndex: '100',
+    ...Shadow.z1
   },
   
   contents: {

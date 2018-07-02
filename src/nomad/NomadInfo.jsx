@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
+import { Black } from '../styles/colors';
 import icon from '../images/plus.svg';
 import MyMapComponent from '../core/MyMapComponent';
 import ButtonMore from '../utils/ButtonMore';
@@ -53,12 +54,13 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'space-around',
   },
-  mapUrl: {
+  mapUrlButton: {
     width: '45%',
     padding: '.4em',
     background: 'white',
+    border: `1px solid ${Black.light}`,
     borderRadius: '1.3rem',
-    color: 'dimgrey',
+    color: Black.light,
     fontSize: '1.5rem',
     textAlign: 'center',
   },
@@ -104,14 +106,18 @@ const NomadInfo = (props) => {
           location={props.location}
         />
         <div className={css(styles.mapToApps)}>
-          <div className={css(styles.mapUrl)}><a href={ios_map_url}>iOS用マップ ＞</a></div>
-          <div className={css(styles.mapUrl)}><a href={android_map_url}>Googleマップ ＞</a></div>
+          <div className={css(styles.mapUrlButton)}>
+            <a href={ios_map_url}>iOS用マップ ＞</a>
+          </div>
+          <div className={css(styles.mapUrlButton)}>
+            <a href={android_map_url}>Googleマップ ＞</a>
+          </div>
         </div>
-      </div>  
+      </div>
       <div className={css(styles.resBasicInfo)}>
         <h3>基本情報</h3>
-        <p>電話番号：<br/>{props.phone_number}</p>
-        <p>住所：<br/>{props.address}</p>
+        <p>電話番号：<br />{props.phone_number}</p>
+        <p>住所：<br />{props.address}</p>
       </div>
     </div>
   );
