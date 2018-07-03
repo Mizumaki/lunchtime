@@ -7,6 +7,7 @@ export default class FormatInfo {
   }
 
   getArray() {
+    console.log("gInfo was called!!")
     const data = this.data
     return {
       name: data.name,
@@ -20,6 +21,13 @@ export default class FormatInfo {
       has_wifi: this.getWifi(),
       has_charge: this.getCharge(),
     }
+  }
+  // 営業中か否か
+  getStatus() {
+    const now = new Date(); // 現在時刻を取得
+    const today_bsh = this.data.business_hours[now.getDay()] // now.getDay()で曜日を呼び出し、それに対応するbshを取り出す
+    // 表示のパターン　営業中　本日の営業時間　06:00~26:00、準備中　本日の営業時間　06:00~26:00、（45m ~ 0前まで）営業終了まで残り約30分　本日の営業時間　06:00~26:00、（1h15m ~ 45m前まで）営業終了まで残り約1時間　本日の営業時間　06:00~26:00
+    // 準備中　本日の営業時間　定休日
   }
 
   getChainName() {
@@ -54,8 +62,8 @@ export default class FormatInfo {
     const nmdp_location = this.getLocation();
     const dis = this.my_location.longitude !== "" && this.my_location.latitude !== "" ?
       (geolib.getDistance(this.my_location, nmdp_location)) : ("");
-    const distance = dis !== null ? `${dis}m` : ""
-    
+    const distance = dis !== "" ? `${dis}m` : ""
+
     return distance
   }
 
@@ -80,12 +88,14 @@ export default class FormatInfo {
   }
 
   getBsh() {
-    // cutting処理を定義
     const cutting = (time) => {
-      const reg_time = /(\d{2}:\d{2}):.+/
-      const result = time.match(reg_time);
-      return result[1];
+      console.log("cutting was called!!!")
+      const date = new Date(time);
+      const hh = ("0" + date.getHours()).slice(-2); // 後ろから2つだけを取り出す。つまり、07 => 07, 022 => 22 となることで、2桁表示を可能にしている。
+      const mm = ("0" + date.getMinutes()).slice(-2);
+      return `${hh}:${mm}`
     }
+
     const nmdp = this.data
     // TODO: 平日の休み、営業時間違いに未対応
     const bsh_sunday = nmdp.business_hours[0].start_time !== null ? {
@@ -144,8 +154,8 @@ export default class FormatInfo {
         default:
           return "不明"
       }
-    })(); 
-    
+    })();
+
     return has_charge
   }
 }
