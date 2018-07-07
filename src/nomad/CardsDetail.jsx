@@ -1,6 +1,13 @@
 import React from 'react';
+import { StyleSheet, css } from 'aphrodite';
 import generateInfo from './generateInfo';
 import CardDetail from './CardDetail';
+
+const styles = StyleSheet.create({
+  wrap: {
+    paddingTop: '.5rem',
+  },
+});
 
 const CardsDetail = (props) => {
   const my_location = props.my_location
@@ -12,7 +19,7 @@ const CardsDetail = (props) => {
       })
     ) : (<p>検索結果は0件です。</p>)
   return (
-    <div>
+    <div className={css(styles.wrap)}>
       {cards}
     </div>
   );

@@ -26,7 +26,7 @@ export default class FormatInfo {
   // 営業中か否か
   getStatus() {
     const now = new Date(); // 現在時刻を取得
-    const today_bsh = this.data.business_hours[6] // now.getDay()で曜日を呼び出し、それに対応するbshを取り出す
+    const today_bsh = this.data.business_hours[now.getDay()] // now.getDay()で曜日を呼び出し、それに対応するbshを取り出す
     // 表示のパターン　営業中　本日の営業時間　06:00~26:00、準備中　本日の営業時間　06:00~26:00、（45m ~ 0前まで）営業終了まで残り約30分　本日の営業時間　06:00~26:00、（1h15m ~ 45m前まで）営業終了まで残り約1時間　本日の営業時間　06:00~26:00
     // 準備中　本日の営業時間　定休日
     // 6 ~ 2 , 7 ~ 23
@@ -40,11 +40,13 @@ export default class FormatInfo {
     const now_hour = now.getHours()
     const now_min = now.getMinutes()
 
+    // TODO : このままでは爆死するので、時間を計算する方法を考える
     const status = (() => {
       if (now_hour === start_hour) {
         return start_min <= now_min ? ("営業中") : ("営業時間外");
       } else if (now_hour === end_hour) {
-        return now_min < end_min ? ("営業中") : ("営業時間外");
+        return now_min >= end_min ? ("営業時間外") :
+          (end_min - now_min > 30) ? ("営業終了まで残り1時間以内") : ("営業終了まで残り30分以内");
       } else if (end_hour > 9) { // 深夜営業でない場合
         return start_hour < now_hour && now_hour < end_hour ? ("営業中") : ("営業時間外");
       } else { // 深夜営業の場合
@@ -141,10 +143,23 @@ export default class FormatInfo {
     const saturday = `${bsh_saturday.start}～${bsh_saturday.end}`
     const sunday = (bsh_sunday === "") ?
       "-" : `${bsh_sunday.start}～${bsh_sunday.end}`;
+    
+    const now = new Date(); // 現在時刻を取得
+    const today = (() => {
+      switch (now.getDay()) {
+        case 0:
+          return sunday
+        case 6:
+          return saturday
+        default:
+          return weekday
+      }
+    })();
     const bsh = {
       weekday: weekday,
       saturday: saturday,
-      sunday: sunday
+      sunday: sunday,
+      today: today,
     }
 
     return bsh
@@ -155,12 +170,10 @@ export default class FormatInfo {
       switch (this.data.has_wifi) {
         case true:
           return "あり";
-        case null:
-          return "データなし";
         case false:
           return "なし";
         default:
-          return "不明"
+          return "情報なし"
       }
     })();
 
@@ -172,12 +185,10 @@ export default class FormatInfo {
       switch (this.data.has_charge) {
         case true:
           return "あり";
-        case null:
-          return "不明";
         case false:
           return "なし";
         default:
-          return "不明"
+          return "情報なし"
       }
     })();
 

@@ -16,11 +16,13 @@ export const chainCss = {
   starbucks: {
     background: Color.logoColor.starbucks,
     color: '#FFFFFF',
+    borderColor: '#FFFFFF',
     fontWeight: '500',
   },
   doutor: {
     background: Color.logoColor.doutor,
     color: Color.Black.normal,
+    borderColor: Color.Black.normal,
     fontWeight: '600',
   }
 }

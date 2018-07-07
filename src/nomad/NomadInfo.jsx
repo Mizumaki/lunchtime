@@ -1,124 +1,32 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
-import { Black } from '../styles/colors';
-import icon from '../images/plus.svg';
-import MyMapComponent from '../core/MyMapComponent';
-import ButtonMore from '../utils/ButtonMore';
+import Menu from './NomadInfo/Menu';
+import Access from './NomadInfo/Access';
+import BasicInfo from './NomadInfo/BasicInfo';
 
 const styles = StyleSheet.create({
-  resMenu: {
-    width: '100%',
+  wrap: {
+    paddingBottom: '3rem',
   },
-
-  resMenuTable: {
-    width: '100%',
-    borderCollapse: 'collapse',
-  },
-
-  resMenuTableRow: {
-    borderBottom: '1px solid black',
-  },
-
-  resMenuTableCell: {
-    padding: '.5rem 1rem',
-  },
-
-  foodNameCell: {
-    textAlign: 'left',
-  },
-
-  priceCell: {
-    textAlign: 'right',
-  },
-
-  moreButtonWrap: {
-    textAlign: 'right',
-    marginTop: '1rem',
-  },
-
-  moreButton: {
-    background: 'white',
-    borderRadius: '5rem',
-    outline: 'none',
-    '::before': {
-      content: `url(${icon})`,
-    }
-  },
-
-  resAbout: {},
-  resImages: {},
-  resReviews: {},
-  resAccess: {},
-  mapToApps: {
-    padding: '2rem 0',
-    display: 'flex',
-    justifyContent: 'space-around',
-  },
-  mapUrlButton: {
-    width: '45%',
-    padding: '.4em',
-    background: 'white',
-    border: `1px solid ${Black.light}`,
-    borderRadius: '1.3rem',
-    color: Black.light,
-    fontSize: '1.5rem',
-    textAlign: 'center',
-  },
-  resBasicInfo: {},
 });
 
 const NomadInfo = (props) => {
   const map_query = `?q=${props.name}&z=20`
   const ios_map_url = `http://maps.apple.com/maps${map_query}`
   const android_map_url = `http://maps.google.com/maps${map_query}`
+
+  // 営業時間を、土日が一致するか否かで表示分け
+  const bsh = (props.bsh.saturday === props.bsh.sunday) ?
+    (<div>月～金： {props.bsh.weekday}<br />土日： {props.bsh.saturday}</div>) :
+    (<div>月～金： {props.bsh.weekday}<br />土： {props.bsh.saturday}<br />日： {props.bsh.sunday}</div>);
+
   return (
-    <div>
-      {/* <div className={css(styles.resMenu)}>
-        <h3>メニュー</h3>
-        <table className={css(styles.resMenuTable)}>
-          <tbody>
-            <tr className={css(styles.resMenuTableRow)}>
-              <td className={css(styles.foodNameCell, styles.resMenuTableCell)}>ゆず塩麺</td>
-              <td className={css(styles.foodNameCell, styles.resMenuTableCell)}>850円</td>
-            </tr>
-            <tr className={css(styles.resMenuTableRow)}>
-              <td className={css(styles.foodNameCell, styles.resMenuTableCell)}>ゆず塩麺</td>
-              <td className={css(styles.foodNameCell, styles.resMenuTableCell)}>850円</td>
-            </tr>
-            <tr className={css(styles.resMenuTableRow)}>
-              <td className={css(styles.foodNameCell, styles.resMenuTableCell)}>ゆず塩麺</td>
-              <td className={css(styles.foodNameCell, styles.resMenuTableCell)}>850円</td>
-            </tr>
-          </tbody>
-        </table>
-        <div className={css(styles.moreButtonWrap)}>
-          <ButtonMore string="もっと見る" left={true} />
-        </div>
-      </div> */}
-      <div className={css(styles.resAccess)}>
-        <p>地図 from Google</p>
-        <MyMapComponent
-          isMarkerShown
-          googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbyNSrNpnNSw7vOXTHC1Kd35OP3GlmGy8&v=3.exp&libraries=geometry,drawing,places"
-          loadingElement={<div style={{ height: `100%` }} />}
-          containerElement={<div style={{ height: `200px` }} />}
-          mapElement={<div style={{ height: `100%` }} />}
-          location={props.location}
-        />
-        <div className={css(styles.mapToApps)}>
-          <div className={css(styles.mapUrlButton)}>
-            <a href={ios_map_url}>iOS用マップ ＞</a>
-          </div>
-          <div className={css(styles.mapUrlButton)}>
-            <a href={android_map_url}>Googleマップ ＞</a>
-          </div>
-        </div>
-      </div>
-      <div className={css(styles.resBasicInfo)}>
-        <h3>基本情報</h3>
-        <p>電話番号：<br />{props.phone_number}</p>
-        <p>住所：<br />{props.address}</p>
-      </div>
+    <div className={css(styles.wrap)}>
+      {/* 
+      <Menu />
+       */}
+      <Access map_query={map_query} ios_map_url={ios_map_url} android_map_url={android_map_url} location={props.location} />
+      <BasicInfo phone_number={props.phone_number} address={props.address} day_off={props.day_off} bsh={bsh} />
     </div>
   );
 }
