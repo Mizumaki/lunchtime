@@ -27,7 +27,7 @@ const NomadInfo = (props) => {
       {/* 
       <Menu />
        */}
-      <ChangeInfo />
+      {/* <ChangeInfo />  */}
       <Access map_query={map_query} ios_map_url={ios_map_url} android_map_url={android_map_url} location={props.location} />
       <BasicInfo phone_number={props.phone_number} address={props.address} day_off={props.day_off} bsh={bsh} />
     </div>
