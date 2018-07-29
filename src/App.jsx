@@ -5,7 +5,9 @@ import { menu_transform } from './styles/css';
 import Header from './core/Header';
 import SubHeader from './core/SubHeader';
 import HandlePages from './core/HandlePages';
+import CoverAll from './core/CoverAll';
 import './Nomad.css';
+import UpperContent from './nomad/UpperContent';
 
 const styles = StyleSheet.create({
   wrap: {
@@ -14,7 +16,7 @@ const styles = StyleSheet.create({
     overflowX: 'hidden',
   },
   main: {
-    marginTop: '5rem', // Header の height: 5rem; に依存
+    paddingTop: '5rem', // Header の height: 5rem; に依存
   },
   slide_menu_shown: {
     ...menu_transform.open
@@ -36,6 +38,9 @@ class App extends Component {
       narrows: [],
       my_location: { latitude: '', longitude: '' },
       is_slide_menu_shown: false,
+      is_cover_all_shown: false,
+      is_upper_content_shown: false,
+      upper_content: "",
     };
   }
 
@@ -55,6 +60,18 @@ class App extends Component {
     this.setState({ is_slide_menu_shown: !this.state.is_slide_menu_shown });
   }
 
+  handleCoverAllShown() {
+    this.setState({ is_cover_all_shown: !this.state.is_cover_all_shown });
+  }
+
+  handleUpperContentChange(value) {
+    this.setState({ upper_content: value })
+  }
+
+  handleUpperContentShown() {
+    this.setState({ is_upper_content_shown: !this.state.is_upper_content_shown });
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -63,8 +80,11 @@ class App extends Component {
           <div className={this.state.is_slide_menu_shown ? (css(styles.slide_menu_shown, styles.main)) : (css(styles.slide_menu_not_shown, styles.main))}>
             <SubHeader />
             <HandlePages onDataChange={this.handleDataChange} onNarrowsChange={this.handleNarrowsChange}
-              onMyLocationChange={this.handleMyLocationChange} {...this.state} />
+              onMyLocationChange={this.handleMyLocationChange} onCoverAllShown={this.handleCoverAllShown}
+              onUpperContentChange={this.handleUpperContentChange} onUpperContentShown={this.handleUpperContentShown} {...this.state} />
           </div>
+          <CoverAll is_shown={this.state.is_cover_all_shown} onClick={this.handleCoverAllShown} is_grey />
+          <UpperContent is_shown={this.state.is_upper_content_shown} content={this.state.upper_content} />
         </div>
       </BrowserRouter>
     );
