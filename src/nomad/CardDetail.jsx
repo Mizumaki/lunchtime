@@ -279,7 +279,9 @@ class CardDetail extends React.Component {
     const charge = hasBranch(nmdp.has_charge);
 
     const alert = nmdp.has_wifi === "情報なし" || nmdp.has_charge === "情報なし" ?
-      (<div><p className={css(styles.alert)}>情報がないデータがあります。<br />あなたの助けが必要です。データを更新してください！</p></div>) : (null);
+      (null) : (null);
+      // TODO : 情報更新が可能になったら、表示するようにする
+      // (<div><p className={css(styles.alert)}>情報がないデータがあります。<br />あなたの助けが必要です。データを更新してください！</p></div>) : (null);
 
     return (
       <div className={css(styles.cardWrap)}>
