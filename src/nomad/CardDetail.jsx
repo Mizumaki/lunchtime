@@ -240,6 +240,14 @@ class CardDetail extends React.Component {
           return chainCss.starbucks
         case "ドトール":
           return chainCss.doutor
+        case "エクセルシオール":
+          return chainCss.excel
+        case "エクセルシオール・バリスタ":
+          return chainCss.excel_barista
+        case "ベローチェ":
+          return chainCss.veloce
+        case "タリーズ":
+          return chainCss.tullys
         default:
           return { background: '#FFFFFF', color: Black.normal, fontWeight: 'bold', }
       }
@@ -310,7 +318,7 @@ class CardDetail extends React.Component {
           <div>{btnIcon}</div>
         </div>
         <div className={css(styles.cardDetail)}>
-          <div className={css(styles.nmdDistance)}>{nmdp.distance}</div>
+          <div className={css(styles.nmdDistance)}>{nmdp.distance ? nmdp.distance + "m" : ""}</div>
           {resDetail}
         </div>
       </div>

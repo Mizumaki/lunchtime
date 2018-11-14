@@ -43,7 +43,7 @@ class SearchStationName extends React.Component {
   handleSearch() {
     console.log("search station")
     this.setState({is_searching: true});
-    fetch(`https://lunchtime-db.herokuapp.com/station/name?name=${this.state.station_name_in_search_box}`, { // `http://localhost:3018/station/name?name=${this.state.station_name_in_search_box}`
+    fetch(`http://localhost:3018/station/name?name=${this.state.station_name_in_search_box}`, { // `https://lunchtime-db.herokuapp.com/station/name?name=${this.state.station_name_in_search_box}`
       mode: 'cors',
       credentials: 'include',
       headers: {

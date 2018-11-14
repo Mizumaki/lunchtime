@@ -11,13 +11,23 @@ const styles = StyleSheet.create({
 
 const CardsDetail = (props) => {
   const my_location = props.my_location
-  const cards = props.data.length !== 0 ?
+  let count = 0;
+  let dataExist = false;
+  let cards = props.data.length !== 0 ?
     (props.data.map((nmdpData) => {
+      dataExist = true;
       const nmdpInfo = new generateInfo(nmdpData, my_location).getArray();
-
-      return (<CardDetail nmdp={nmdpInfo} key={nmdpData.id} />)
-      })
-    ) : (<p>検索結果は0件です。</p>)
+      if (nmdpInfo.distance < props.narrowDistance) {
+        count += 1;
+        return (<CardDetail nmdp={nmdpInfo} key={nmdpData.id} />)
+      } else {
+        return;
+      }
+    })
+    ) : (<p>3km以内に当サイトが検索できるカフェは0件です。</p>);
+  if (count == 0 && dataExist) {
+    cards = (<p>{`${props.narrowDistance}m 以内には見つかりませんでした。範囲を広くしてみてください。`}</p>)
+  }
   return (
     <div className={css(styles.wrap)}>
       {cards}

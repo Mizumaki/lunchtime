@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
-import { Link } from 'react-router-dom';
+import SelctBox from '../utils/SelectBox';
+import SelectBox from '../utils/SelectBox';
 
 const styles = StyleSheet.create({
   wrap: {
@@ -9,9 +10,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     fontSize: '1.8rem',
     padding: '1.5rem 0',
+    maxWidth: '36rem',
+    margin: '0 auto'
+  },
+
+  item: {
+    flex: '1 1 0',
+    width: '33%',
+    textAlign: 'center'
   },
 
   active: {
+    width: '80%',
+    margin: '0 5% 0 15%',
     color: '#FAAF3B',
     fontWeight: 'bold',
     borderBottom: '4px solid #FAAF3B',
@@ -32,7 +43,15 @@ const SubHeader = (props) => {
   })();
   return (
     <div className={css(styles.wrap)}>
-      <div className={css(styles.active)}>{condition}</div>
+      <div className={css(styles.item)}>並び替え</div>
+      <div className={css(styles.item)}>
+        <div className={css(styles.active)}>
+          {condition}
+        </div>
+      </div>
+      <div className={css(styles.item)}>
+        <SelectBox type="distance" now={props.narrowDistance} onChange={props.onNarrowDistanceChange} />
+      </div>
     </div>
   );
 }

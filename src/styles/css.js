@@ -16,14 +16,32 @@ export const chainCss = {
   starbucks: {
     background: Color.logoColor.starbucks,
     color: '#FFFFFF',
-    borderColor: '#FFFFFF',
     fontWeight: '500',
   },
   doutor: {
     background: Color.logoColor.doutor,
     color: Color.Black.normal,
-    borderColor: Color.Black.normal,
     fontWeight: '600',
+  },
+  excel: {
+    background: Color.logoColor.excel,
+    color: '#F5F5DC',
+    fontWeight: '500'
+  },
+  excel_barista: {
+    background: Color.logoColor.excel,
+    color: '#50443c',
+    fontWeight: '600'
+  },
+  veloce: {
+    background: Color.logoColor.veloce,
+    color: '#FFFFFF',
+    fontWeight: '500'
+  },
+  tullys: {
+    background: Color.logoColor.tullys,
+    color: '#FAFAD2',
+    fontWeight: '500'
   }
 }
 

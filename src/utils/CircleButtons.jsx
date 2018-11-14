@@ -73,8 +73,8 @@ class CircleButtons extends React.Component {
         //contents = [{ name: "現在地" }, { name: "駅名" }, { name: "建物名" }];
         break;
       case "chain_main":
-        contents = [{ name: "マック", id: 100 }, { name: "スタバ", id: 1 }, { name: "ドトール", id: 2 }];
-        contents = [{ name: "スタバ", id: 1 }, { name: "ドトール", id: 2 }];
+        // contents = [{ name: "マック", id: 100 }, { name: "スタバ", id: 1 }, { name: "ドトール", id: 2 }];
+        contents = [{ name: "スタバ", id: 1 }, { name: "ドトール", id: 2 }, { name: "タリーズ", id: 6 }, { name: "ベローチェ", id: 5 }, { name: "エクセルシオール", id: 3 }, { name: "エクセルシオール・バリスタ", id: 4 }];
         break;
       case "chain_sub":
         contents = ["サンマルク", "タリーズ", "ベローチェ", "プロント", "エクセルシオール", "カフェドクリエ", "上島珈琲", "コメダ珈琲", "ルノアール", "カフェミヤマ"];

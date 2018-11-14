@@ -64,6 +64,14 @@ export default class FormatInfo {
           return "スターバックス"
         case 2:
           return "ドトール"
+        case 3:
+          return "エクセルシオール"
+        case 4:
+          return "エクセルシオール Barista"
+        case 5:
+          return "ベローチェ"
+        case 6:
+          return "タリーズ"
         default:
           break;
       }
@@ -89,7 +97,7 @@ export default class FormatInfo {
     const nmdp_location = this.getLocation();
     const dis = this.my_location.longitude !== "" && this.my_location.latitude !== "" ?
       (geolib.getDistance(this.my_location, nmdp_location)) : ("");
-    const distance = dis !== "" ? `${dis}m` : ""
+    const distance = dis
 
     return distance
   }

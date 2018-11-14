@@ -44,7 +44,7 @@ class PageSearchResults extends React.Component {
     return (
       <div className={css(styles.container)}>
         <ScrollToTopOnMount />
-        <CardsDetail data={this.state.results} my_location={this.props.my_location} />
+        <CardsDetail data={this.state.results} my_location={this.props.my_location} narrowDistance={this.props.narrowDistance} onNarrowDistanceChange={this.props.onNarrowDistanceChange} />
       </div >
     );
   }

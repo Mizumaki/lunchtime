@@ -17,7 +17,7 @@ const HandlePages = (props) => {
     <div className={css(styles.wrap)}>
       <Route exact path='/' render={() => <PageTop />} />
       <Route path='/search' render={() => <PageSearch onDataChange={props.onDataChange} onNarrowsChange={props.onNarrowsChange} onMyLocationChange={props.onMyLocationChange} />} />
-      <Route path='/results' render={() => <PageSearchResults data={props.data} narrows={props.narrows} my_location={props.my_location} />} />
+      <Route path='/results' render={() => <PageSearchResults data={props.data} narrowDistance={props.narrowDistance} onNarrowDistanceChange={props.onNarrowDistanceChange} narrows={props.narrows} my_location={props.my_location} />} />
     </div>
   );
 }

@@ -3,7 +3,11 @@
 
 export const logoColor = {
   starbucks: "#00704A",
-  doutor: "#FEB403"
+  doutor: "#FEB403",
+  excel: "#409FD9",
+  excel_barista: "#B0E0E6",
+  veloce: "#A03136",
+  tullys: "#d92704"
 }
 
 export const Black = {
