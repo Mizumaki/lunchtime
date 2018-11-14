@@ -28,10 +28,6 @@ const PageTop = (props) => {
       <Link to='/search'>
         <button type='button' className={css(styles.searchButton)}>今すぐ検索！</button>
       </Link>
-      {/* 表示確認用 */}
-      <Link to='/results'>
-        <button type='button' className={css(styles.searchButton)}>テスト用</button>
-      </Link>
     </div>
   );
 }

@@ -16,6 +16,7 @@ class SelectStation extends React.Component {
       data: [],
       selected_station_id: '',
       selected_station_name: '',
+      selected_station_location: ''
     };
   }
 
@@ -24,13 +25,14 @@ class SelectStation extends React.Component {
     this.setState({data: value});
   }
 
-  handleSelected(id, name) {
+  handleSelected(id, name, location) {
     // stateへの代入と、親へのselectされたstation id の伝播
     this.setState({
       selected_station_id: id,
       selected_station_name: name,
+      selected_station_location: location
     });
-    this.props.onSelected(id);
+    this.props.onSelected(id, name, location);
   }
 
   render() {

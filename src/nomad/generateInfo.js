@@ -67,7 +67,7 @@ export default class FormatInfo {
         case 3:
           return "エクセルシオール"
         case 4:
-          return "エクセルシオール Barista"
+          return "エクセルシオール・バリスタ"
         case 5:
           return "ベローチェ"
         case 6:

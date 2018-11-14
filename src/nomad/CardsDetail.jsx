@@ -24,7 +24,7 @@ const CardsDetail = (props) => {
         return;
       }
     })
-    ) : (<p>3km以内に当サイトが検索できるカフェは0件です。</p>);
+    ) : (<p>1km以内に当サイトが検索できるカフェは0件です。</p>);
   if (count == 0 && dataExist) {
     cards = (<p>{`${props.narrowDistance}m 以内には見つかりませんでした。範囲を広くしてみてください。`}</p>)
   }

@@ -26,8 +26,6 @@ class SelectBox extends React.Component {
             <option value="300">300m</option>
             <option value="500">500m</option>
             <option value="1000">1000m</option>
-            <option value="2000">2000m</option>
-            <option value="3000">3000m</option>
           </select>
         );
       default:

@@ -13,6 +13,10 @@ class Narrows extends React.Component {
     this.state = {query: ''};
   }
 
+  componentDidMount = () => {
+    this.props.onNarrowsChange([]);
+  }
+
   render() {
     return (
       <div className={css(styles.wrap)}>

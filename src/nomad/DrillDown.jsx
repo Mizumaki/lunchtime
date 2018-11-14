@@ -45,7 +45,7 @@ class DrillDown extends React.Component {
     const search_path = await value
     console.log("dataのfetch処理を開始")
     console.log(search_path)
-    fetch(`http://localhost:3018/nmdp/${search_path}&distance=3000`, { //`https://lunchtime-db.herokuapp.com/nmdp/${search_path}`, 
+    fetch(`https://lunchtime-db.herokuapp.com/nmdp/${search_path}`, { // `http://localhost:3018/nmdp/${search_path}&distance=3000`
       mode: 'cors',
       credentials: 'include',
       headers: {

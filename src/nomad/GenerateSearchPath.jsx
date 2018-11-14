@@ -17,7 +17,12 @@ class GenerateSearchPath extends React.Component {
     };
   }
 
-  handleStationSelected(id) {
+  handleStationSelected(id, name, location) {
+    console.log(location);
+    const regLocation = location.match(/(\d+\.\d+)\s(\d+\.\d+)/);
+    const lon = parseFloat(regLocation[1]);
+    const lat = parseFloat(regLocation[2]);
+    this.props.onMyLocationChange({longitude: lon, latitude: lat});
     // StationSelectでclickされたstationのidをもとにサーチパスを生成、親に伝播
     const search_path = `station?id=${id}`
     this.setState({ search_path: search_path });
