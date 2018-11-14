@@ -42,7 +42,7 @@ class SearchStationName extends React.Component {
 
   handleSearch() {
     console.log("search station")
-    this.setState({is_searching: true});
+    this.setState({ is_searching: true });
     fetch(`https://lunchtime-db.herokuapp.com/station/name?name=${this.state.station_name_in_search_box}`, { //  `http://localhost:3018/station/name?name=${this.state.station_name_in_search_box}`
       mode: 'cors',
       credentials: 'include',
@@ -54,14 +54,17 @@ class SearchStationName extends React.Component {
       .then(res => res.json())
       .then(
         (result) => {
-          console.log(result)
+          console.log(result);
+          this.props.onError(false);
           this.props.onDataChange(result);
-          this.setState({is_searching: false});
-        },
+          this.setState({ is_searching: false });
+        }
+      )
+      .catch(
         (error) => {
-          console.log(error)
-          this.setState({ error });
-          this.setState({is_searching: false});
+          console.log(error);
+          this.props.onError(true);
+          this.setState({ is_searching: false });
         }
       )
   }

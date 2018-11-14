@@ -56,7 +56,8 @@ class DrillDown extends React.Component {
       .then(res => res.json())
       .then(
         (result) => {
-          console.log("データのfetchが完了")
+          console.log("データのfetchが完了");
+          this.props.onError(false);
           this.props.onDataChange(result);
           this.props.onCondition(""); // 成功したらエラーをクリア
           this.props.onDone(true); // PageSearchにDataの取得が完了したことを伝える
@@ -67,7 +68,7 @@ class DrillDown extends React.Component {
         (error) => {
           console.log("データのfetchが失敗")
           this.props.onCondition("");
-          this.props.onError(error);
+          this.props.onError(true);
           this.props.onDone(false); // デフォルトfalseだが、万が一にもここがtrueとなってしまうと困るので、明示
         }
       )
@@ -82,7 +83,7 @@ class DrillDown extends React.Component {
           <ButtonMore />
         </div>
         <DrillButtons onClick={this.handleSelectDrillButton} error={this.props.error} />
-        <GenerateSearchPath onChange={this.handelSearchPathChange} selectedDrillButton={this.state.selected_drill_button} onMyLocationChange={this.props.onMyLocationChange} />
+        <GenerateSearchPath onChange={this.handelSearchPathChange} selectedDrillButton={this.state.selected_drill_button} onMyLocationChange={this.props.onMyLocationChange} onError={this.props.onError} />
       </div>
     );
   }

@@ -41,7 +41,7 @@ class GenerateSearchPath extends React.Component {
     const select_component = (() => {
       switch (this.props.selectedDrillButton) {
         case "現在地": return (<SelectPresentLocation onSelected={this.handleLocationSelected} />)
-        case "駅名": return (<SelectStation onSelected={this.handleStationSelected} />)
+        case "駅名": return (<SelectStation onSelected={this.handleStationSelected} onError={this.props.onError} />)
         case "建物名": return (<SelectBuilding onSelected={this.handleLocationSelected} />)
         default: return (null)
       }

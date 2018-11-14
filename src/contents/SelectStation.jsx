@@ -38,7 +38,7 @@ class SelectStation extends React.Component {
   render() {
     return (
       <div className={css(styles.wrap)}>
-        <SearchStationName onDataChange={this.handleDataChange} />
+        <SearchStationName onDataChange={this.handleDataChange} onError={this.props.onError} />
         <StationSearchResults data={this.state.data} onClick={this.handleSelected} />
       </div>
     );

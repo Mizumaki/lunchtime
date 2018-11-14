@@ -83,8 +83,7 @@ class PageSearch extends React.Component {
     this.state = {
       is_drill_down_selected: false,
       condition: "",
-      data_fetch_error: "",
-      error_string: "",
+      is_error: false,
     }
   }
 
@@ -100,16 +99,7 @@ class PageSearch extends React.Component {
 
   // エラー文の表示
   handleError(value) {
-    this.setState({ data_fetch_error: value });
-    // TODO: data_fetch_errorの種類によりerror_stringのstateを変える
-    switch (value) {
-      case "":
-        this.setState({ error_string: value });
-        break;
-      default:
-        this.setState({ error_string: "" });
-        break;
-    }
+    this.setState({is_error: value});
   }
 
   render() {
@@ -121,7 +111,7 @@ class PageSearch extends React.Component {
           </div>
           <div className={css(styles.searchWrap)}>
             <TextSearch /> {/* 今のところ null */}
-            <DrillDown onDataChange={this.props.onDataChange} onDone={this.handleDrillDownSelectDone} onCondition={this.handleCondition} onError={this.handleError} error={this.state.data_fetch_error} onMyLocationChange={this.props.onMyLocationChange} />
+            <DrillDown onDataChange={this.props.onDataChange} onDone={this.handleDrillDownSelectDone} onCondition={this.handleCondition} onError={this.handleError} error={this.state.is_error} onMyLocationChange={this.props.onMyLocationChange} />
             <Narrows onNarrowsChange={this.props.onNarrowsChange} />
             {/* 
             <div className={css(styles.optionButtonsWrap)}>
