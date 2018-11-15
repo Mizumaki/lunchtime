@@ -1,15 +1,15 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    }
-  ],
+  "name": "NomadTime",
+  "short_name": "NomadTime",
+  "description": "チェーン系カフェ店舗検索WEBアプリケーションです。",
+  "lang": "ja-JP",
   "start_url": "./index.html",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#50443C",
+  "background_color": "#FAF4F0",
+  "icons": [{
+    "src": "coffee.svg",
+    "sizes": "64x64",
+    "type": "image/svg"
+  }]
 }
